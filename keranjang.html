@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pasar Ikan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    :root {
+      --primary-bg: #0077B6;
+      --header-bg: #EFF6FF;
+      --body-bg: #EFF6FF;
+      --button-bg: #DBEAFE;
+      --highlight-bg: #DBEAFE;
+      --price-color: #0077B6;
+      --button-text: #0077B6;
+    }
+  </style>
+</head>
+<body style="background-color: var(--body-bg);" class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div style="background-color: var(--header-bg);" class="p-4">
+    <div class="flex items-center gap-2">
+      <button id="backBtn" style="background-color: var(--primary-bg);" class="rounded-lg px-3 py-2 shadow">
+        <a href="#"><img src="img/arrowback.png" width="24" height="22"></a>
+      </button>
+    </div>
+    <div class="border-b-2 my-3" style="border-color: #7BD5FE;"></div>
+    <div class="flex items-center justify-start mt-2 gap-2">
+      <input type="checkbox" id="selectAll" class="form-checkbox w-4 h-4">
+      <span class="text-sm ml-4 font-semibold" style="color: #07304A;">Budi fisherman</span>
+    </div>
+    <div class="border-b-2 my-3" style="border-color: #7BD5FE;"></div>
+  </div>
+
+  <!-- Daftar Produk -->
+  <div class="flex-1 p-4 space-y-4">
+    <!-- Produk Ikan Belanak -->
+    <div class="rounded-xl shadow p-4 flex items-center gap-4 bg-transparent">
+      <input id="check-belanak" type="checkbox" class="form-checkbox w-5 h-5">
+      <img src="ikanbelanak.png" alt="Ikan Belanak" class="w-20 h-20 object-cover rounded-md">
+      <div class="flex-1">
+        <div class="font-semibold text-lg" style="color: #07304A;">Ikan Belanak</div>
+        <div class="text-sm text-[#07304A] bg-[#DBF0FF] px-2 py-1 rounded w-fit">40 kg</div>
+        <div style="color: var(--price-color);" class="font-semibold">Rp. 40.000</div>
+      </div>
+      <div class="flex items-center border border-[#07304A] rounded-lg overflow-hidden">
+        <button id="minus-belanak" class="text-[#07304A] px-3 py-2">-</button>
+        <div class="flex">
+          <span id="qty-belanak" class="bg-[#0077B6] text-white px-2 py-1 rounded">1</span>
+          <span class="bg-[#0077B6] text-white px-2 py-1 rounded ml-1">Kg</span>
+        </div>
+        <button id="plus-belanak" class="text-[#07304A] px-3 py-2">+</button>
+      </div>
+    </div>
+
+    <!-- Produk Kepiting -->
+    <div class="rounded-xl shadow p-4 flex items-center gap-4 bg-transparent">
+      <input id="check-kepiting" type="checkbox" class="form-checkbox w-5 h-5">
+      <img src="kepiting.png" alt="Kepiting" class="w-20 h-20 object-cover rounded-md">
+      <div class="flex-1">
+        <div class="font-semibold text-lg" style="color: #07304A;">Kepiting</div>
+        <div class="text-sm text-[#07304A] bg-[#DBF0FF] px-2 py-1 rounded w-fit">15 kg</div>
+        <div style="color: var(--price-color);" class="font-semibold">Rp. 40.000</div>
+      </div>
+      <div class="flex items-center border border-[#07304A] rounded-lg overflow-hidden">
+        <button id="minus-kepiting" class="text-[#07304A] px-3 py-2">-</button>
+        <div class="flex">
+          <span id="qty-kepiting" class="bg-[#0077B6] text-white px-2 py-1 rounded">1</span>
+          <span class="bg-[#0077B6] text-white px-2 py-1 rounded ml-1">Kg</span>
+        </div>
+        <button id="plus-kepiting" class="text-[#07304A] px-3 py-2">+</button>
+      </div>
+    </div>
+
+    <!-- Produk Sotong -->
+    <div class="rounded-xl shadow p-4 flex items-center gap-4 bg-transparent">
+      <input id="check-sotong" type="checkbox" class="form-checkbox w-5 h-5">
+      <img src="sotong.png" alt="Sotong" class="w-20 h-20 object-cover rounded-md">
+      <div class="flex-1">
+        <div class="font-semibold text-lg" style="color: #07304A;">Sotong</div>
+        <div class="text-sm text-[#07304A] bg-[#DBF0FF] px-2 py-1 rounded w-fit">8 kg</div>
+        <div style="color: var(--price-color);" class="font-semibold">Rp. 64.000</div>
+      </div>
+      <div class="flex items-center border border-[#07304A] rounded-lg overflow-hidden">
+        <button id="minus-sotong" class="text-[#07304A] px-3 py-2">-</button>
+        <div class="flex">
+          <span id="qty-sotong" class="bg-[#0077B6] text-white px-2 py-1 rounded">1</span>
+          <span class="bg-[#0077B6] text-white px-2 py-1 rounded ml-1">Kg</span>
+        </div>
+        <button id="plus-sotong" class="text-[#07304A] px-3 py-2">+</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div style="background-color: var(--primary-bg);" class="p-4 text-white flex justify-between items-center">
+    <div class="flex items-center gap-2">
+      <input type="checkbox" id="selectSemuaToko" class="form-checkbox w-5 h-5">
+      <label for="selectSemuaToko" class="text-sm font-medium">Pilih semua toko</label>
+    </div>
+    <div id="totalHarga" class="ml-auto mr-4 font-semibold whitespace-nowrap">Total Rp0</div>
+    <button id="pesanBtn" style="color: var(--button-text);" class="bg-white px-4 py-2 rounded font-semibold whitespace-nowrap">Pesan</button>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const items = [
+        { id: "belanak", price: 40000 },
+        { id: "kepiting", price: 40000 },
+        { id: "sotong", price: 64000 }
+      ];
+
+      items.forEach(item => {
+        const plusBtn = document.getElementById(`plus-${item.id}`);
+        const minusBtn = document.getElementById(`minus-${item.id}`);
+        const qtySpan = document.getElementById(`qty-${item.id}`);
+        const checkbox = document.getElementById(`check-${item.id}`);
+
+        plusBtn.addEventListener("click", () => {
+          let qty = parseInt(qtySpan.textContent);
+          qty++;
+          qtySpan.textContent = qty;
+          updateTotal();
+        });
+
+        minusBtn.addEventListener("click", () => {
+          let qty = parseInt(qtySpan.textContent);
+          if (qty > 1) {
+            qty--;
+            qtySpan.textContent = qty;
+            updateTotal();
+          }
+        });
+
+        checkbox.addEventListener("change", updateTotal);
+      });
+
+      function updateTotal() {
+        let total = 0;
+        items.forEach(item => {
+          const checkbox = document.getElementById(`check-${item.id}`);
+          const qty = parseInt(document.getElementById(`qty-${item.id}`).textContent);
+          if (checkbox.checked) {
+            total += item.price * qty;
+          }
+        });
+        document.getElementById("totalHarga").textContent = `Total Rp${total.toLocaleString("id-ID")}`;
+      }
+
+      // Tombol kembali
+      document.getElementById("backBtn").addEventListener("click", () => {
+        alert("Kembali ke halaman sebelumnya.");
+      });
+
+      // Tombol pesan
+      document.getElementById("pesanBtn").addEventListener("click", () => {
+        alert("Pesanan berhasil dibuat!");
+        window.location.href = "pesanan-berhasil.html";
+      });
+
+      // Select All untuk toko Budi fisherman
+      document.getElementById("selectAll").addEventListener("change", (e) => {
+        const checked = e.target.checked;
+        items.forEach(item => {
+          document.getElementById(`check-${item.id}`).checked = checked;
+        });
+        updateTotal();
+      });
+
+      // Select semua toko (checkbox bawah)
+      document.getElementById("selectSemuaToko").addEventListener("change", (e) => {
+        const checked = e.target.checked;
+        items.forEach(item => {
+          document.getElementById(`check-${item.id}`).checked = checked;
+        });
+        updateTotal();
+      });
+    });
+  </script>
+</body>
+</html>
