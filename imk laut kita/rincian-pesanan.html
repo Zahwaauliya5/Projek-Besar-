@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rincian Pesanan - Laut Kita</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      background-color: #f2f9ff;
+      color: #1a1a1a;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .card {
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+    }
+    .item-row {
+      display: flex;
+      justify-content: space-between;
+      margin: 10px 0;
+    }
+    .total {
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .back-btn {
+      display: inline-block;
+      margin-top: 20px;
+      text-align: center;
+      background-color: #0077cc;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+    }
+    .back-btn:hover {
+      background-color: #005fa3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Rincian Pesanan</h1>
+
+    <div class="card" id="pesanan-container">
+      <!-- Data akan diisi lewat JS -->
+    </div>
+
+    <a href="home.html" class="back-btn">Kembali ke Beranda</a>
+  </div>
+
+  <script>
+    const pesanan = JSON.parse(localStorage.getItem("dataPesanan"));
+
+    if (pesanan) {
+      document.getElementById("pesanan-container").innerHTML = `
+        <div class="item-row"><span>Produk</span><span>${pesanan.produk}</span></div>
+        <div class="item-row"><span>Jumlah</span><span>${pesanan.jumlah} Kg</span></div>
+        <div class="item-row"><span>Harga per Kg</span><span>Rp. ${pesanan.hargaPerKg.toLocaleString()}</span></div>
+        <div class="item-row"><span>Kurir</span><span>${pesanan.kurir.charAt(0).toUpperCase() + pesanan.kurir.slice(1)}</span></div>
+        <div class="item-row"><span>Ongkos Kirim</span><span>Rp. ${pesanan.ongkir.toLocaleString()}</span></div>
+        <div class="item-row"><span>Metode Pembayaran</span><span>${pesanan.metodePembayaran}</span></div>
+        <hr>
+        <div class="item-row total"><span>Total Bayar</span><span>Rp. ${pesanan.total.toLocaleString()}</span></div>
+      `;
+    } else {
+      document.getElementById("pesanan-container").innerHTML = "<p>Data pesanan tidak ditemukan.</p>";
+    }
+  </script>
+</body>
+</html>
