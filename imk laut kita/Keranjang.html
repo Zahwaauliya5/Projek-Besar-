@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lautan Kita - Keranjang Belanja</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+  <style>
+    :root {
+      --primary-bg: #0077B6;
+      --header-bg: #EFF6FF;
+      --body-bg: #EFF6FF;
+      --button-bg: #DBEAFE;
+      --highlight-bg: #DBEAFE;
+      --price-color: #0077B6;
+      --button-text: #0077B6;
+    }
+    
+    .cart-counter {
+      display: none;
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: #EF4444;
+      color: white;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      font-size: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .relative {
+      position: relative;
+    }
+  </style>
+</head>
+<body style="background-color: var(--body-bg);" class="min-h-screen flex flex-col">
+  <!-- Header -->
+  <div style="background-color: var(--header-bg);" class="p-4">
+    <div class="flex items-center gap-2">
+      <button id="backBtn" style="background-color: var(--primary-bg);" class="rounded-lg px-3 py-2 shadow">
+        <a href="index.html"><img src="img/back.png" width="24" height="22" alt="Kembali"></a>
+      </button>
+    </div>
+    <div class="border-b-2 my-3" style="border-color: #7BD5FE;"></div>
+    <div class="flex items-center justify-start mt-2 gap-2">
+      <input type="checkbox" id="selectAll" class="form-checkbox w-4 h-4">
+      <span class="text-sm ml-4 font-semibold" style="color: #07304A;">Budi Fisherman</span>
+    </div>
+    <div class="border-b-2 my-3" style="border-color: #7BD5FE;"></div>
+  </div>
+
+  <!-- Daftar Produk -->
+  <div class="flex-1 p-4 space-y-4" id="cartItemsContainer">
+    <!-- Produk akan dimuat secara dinamis dari localStorage -->
+  </div>
+
+  <!-- Footer -->
+  <div style="background-color: var(--primary-bg);" class="p-4 text-white flex justify-between items-center">
+    <div class="flex items-center gap-2">
+      <input type="checkbox" id="selectSemuaToko" class="form-checkbox w-5 h-5">
+      <label for="selectSemuaToko" class="text-sm font-medium">Pilih semua toko</label>
+    </div>
+    <div id="totalHarga" class="ml-auto mr-4 font-semibold whitespace-nowrap">Total Rp0</div>
+    <button id="pesanBtn" style="color: var(--button-text);" class="bg-white px-4 py-2 rounded font-semibold whitespace-nowrap">Pesan</button>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Fungsi untuk memuat keranjang dari localStorage
+      function loadCartItems() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const container = document.getElementById('cartItemsContainer');
+        container.innerHTML = '';
+
+        if (cart.length === 0) {
+          container.innerHTML = `
+            <div class="text-center py-10">
+              <i class="fas fa-shopping-cart text-4xl text-gray-400 mb-4"></i>
+              <p class="text-gray-600">Keranjang belanja Anda kosong</p>
+              <a href="index.html" class="text-blue-500 mt-2 inline-block">Mulai Belanja</a>
+            </div>
+          `;
+          return;
+        }
+
+        cart.forEach((item, index) => {
+          const itemHTML = `
+            <div class="rounded-xl shadow p-4 flex items-center gap-4 bg-white">
+              <input id="check-${index}" type="checkbox" class="form-checkbox w-5 h-5" checked>
+              <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-cover rounded-md">
+              <div class="flex-1">
+                <div class="font-semibold text-lg" style="color: #07304A;">${item.name}</div>
+                <div style="color: var(--price-color);" class="font-semibold">Rp ${item.price.toLocaleString('id-ID')}/kg</div>
+              </div>
+              <div class="flex items-center border border-[#07304A] rounded-lg overflow-hidden">
+                <button id="minus-${index}" class="text-[#07304A] px-3 py-2">-</button>
+                <div class="flex">
+                  <span id="qty-${index}" class="bg-[#0077B6] text-white px-2 py-1 rounded">${item.quantity}</span>
+                  <span class="bg-[#0077B6] text-white px-2 py-1 rounded ml-1">Kg</span>
+                </div>
+                <button id="plus-${index}" class="text-[#07304A] px-3 py-2">+</button>
+              </div>
+            </div>
+          `;
+          container.insertAdjacentHTML('beforeend', itemHTML);
+
+          // Event listeners untuk tombol +/- 
+          document.getElementById(`plus-${index}`).addEventListener('click', () => {
+            item.quantity += 1;
+            updateCart(cart);
+          });
+
+          document.getElementById(`minus-${index}`).addEventListener('click', () => {
+            if (item.quantity > 1) {
+              item.quantity -= 1;
+              updateCart(cart);
+            }
+          });
+
+          document.getElementById(`check-${index}`).addEventListener('change', updateTotal);
+        });
+
+        updateTotal();
+      }
+
+      // Fungsi untuk update keranjang
+      function updateCart(cart) {
+        localStorage.setItem('cart', JSON.stringify(cart));
+        loadCartItems();
+      }
+
+      // Fungsi untuk menghitung total
+      function updateTotal() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let total = 0;
+        
+        cart.forEach((item, index) => {
+          const checkbox = document.getElementById(`check-${index}`);
+          if (checkbox && checkbox.checked) {
+            total += item.price * item.quantity;
+          }
+        });
+        
+        document.getElementById("totalHarga").textContent = `Total Rp${total.toLocaleString("id-ID")}`;
+      }
+
+      // Fungsi untuk select all
+      function setupSelectAll() {
+        document.getElementById("selectAll").addEventListener('change', (e) => {
+          const checked = e.target.checked;
+          const checkboxes = document.querySelectorAll('#cartItemsContainer [type="checkbox"]');
+          checkboxes.forEach(checkbox => {
+            checkbox.checked = checked;
+          });
+          updateTotal();
+        });
+
+        document.getElementById("selectSemuaToko").addEventListener('change', (e) => {
+          const checked = e.target.checked;
+          const checkboxes = document.querySelectorAll('#cartItemsContainer [type="checkbox"]');
+          checkboxes.forEach(checkbox => {
+            checkbox.checked = checked;
+          });
+          updateTotal();
+        });
+      }
+
+      // Tombol kembali
+      document.getElementById("backBtn").addEventListener("click", (e) => {
+        e.preventDefault();
+        window.history.back();
+      });
+
+      // Tombol pesan
+      document.getElementById("pesanBtn").addEventListener("click", () => {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        if (cart.length === 0) {
+          alert("Keranjang belanja Anda kosong!");
+          return;
+        }
+        
+        // Simpan data pesanan sebelum mengosongkan keranjang
+        localStorage.setItem('lastOrder', JSON.stringify(cart));
+        localStorage.removeItem('cart');
+        alert("Pesanan berhasil dibuat!");
+        window.location.href = "pesanan-berhasil.html";
+      });
+
+      // Inisialisasi
+      loadCartItems();
+      setupSelectAll();
+    });
+  </script>
+</body>
+</html>
