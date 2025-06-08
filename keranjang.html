@@ -20,7 +20,7 @@
   <!-- Header -->
   <div class="p-4" style="background-color: var(--header-bg);">
     <div class="flex items-center gap-2">
-      <button onclick="window.location.href='home.html'" class="rounded-lg px-3 py-2 shadow" style="background-color: var(--primary-bg);">
+      <button onclick="window.location.href='home_final.html'" class="rounded-lg px-3 py-2 shadow" style="background-color: var(--primary-bg);">
         <img src="img/arrowback.png" width="24" height="22" alt="Kembali">
       </button>
     </div>
@@ -63,7 +63,11 @@
           <img src="${item.image}" alt="${item.name}" class="w-20 h-20 object-cover rounded-md">
           <div class="flex-1">
             <div class="font-semibold text-lg text-[#07304A]">${item.name}</div>
-            <div class="text-sm text-[#07304A] bg-[#DBF0FF] px-2 py-1 rounded w-fit">${item.quantity} kg</div>
+            <div class="flex items-center gap-2 mt-1">
+              <button onclick="updateQuantity(${index}, -1)" class="bg-[#0077B6] text-white px-2 rounded">-</button>
+              <span id="qyt-${index}" class="tect-sm text-[#07304A]">${item.quantity} kg</span>
+              <button onclick="updateQuantity(${index}, 1)" class="bg-[#0077B6] text-white px-2 rounded">+</button>
+            </div>
             <div class="font-semibold text-[#0077B6]">Rp. ${item.price.toLocaleString("id-ID")}</div>
           </div>
         `;
@@ -84,6 +88,20 @@
         }
       });
     });
+
+    function updateQuantity(index, change){
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      if (!cart[index]) return;
+
+      cart[index].quantity += change;
+
+      if (cart[index].quantity <= 0) {
+        cart.splice(index, 1);
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      location.reload();
+    }
   </script>
 </body>
 </html>
