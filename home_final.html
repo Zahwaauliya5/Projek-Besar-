@@ -17,7 +17,6 @@
       scroll-behavior: smooth;
     }
     
-    /* Header Styles */
     header {
       background: url('img/background.png') center/cover no-repeat;
       padding: 40px 20px 120px;
@@ -91,7 +90,6 @@
       background-color: #316EA0;
     }
 
-    /* Section Styles */
     .section {
       padding: 60px 20px;
       max-width: 1600px;
@@ -108,16 +106,14 @@
       margin-bottom: 25px;
     }
 
-    /* Card Container */
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
       gap: 55px;
-      margin-top: 30px; /*margin atas*/
+      margin-top: 30px;
       padding: 60px 20px;
     }
 
-    /* Card Styles */
 .card {
   background: #0077b6;
   border-radius: 12px;
@@ -125,21 +121,21 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   position: relative;
   transition: transform 0.3s;
-  margin-bottom: 30px; /* Tambahkan margin bawah */
+  margin-bottom: 30px;
 }
 
 .card:hover {
   transform: translateY(-5px);
 }
-/* Image with overflow effect */
+
 .image-container {
-  height: 230px; /* Tinggi container diperbesar */
-  margin: -35px 100px 50px 45px; /* Margin negatif untuk membuat gambar keluar */
+  height: 230px;
+  margin: -35px 100px 50px 45px;
   overflow: visible;
   position: relative;
 }
 .image-container img {
-  width: calc(100% + 60px); /* Lebar gambar lebih besar dari container */
+  width: calc(100% + 60px);
   height: 100%;
   object-fit: cover;
   display: block;
@@ -154,7 +150,6 @@
       margin-top: -10px;
     }
     
-    /* Badge */
     .badge {
   position: absolute;
   top: 15px;
@@ -173,21 +168,19 @@
   color: white;
 }
 
-
-    /* Perbaikan untuk product info */
 .product-info {
   padding: 15px;
   margin-top: -20px;
   display: flex;
   flex-direction: column;
-  gap: 4px; /* Jarak antar elemen */
+  gap: 4px;
   position: relative;
   z-index: 1;
 }
     .card h3 {
       font-size: 1.1rem;
       color: #d1ddff;
-      margin: 0px; /* hilangkan margin bawah*/
+      margin: 0px;
       padding: 0;
       display: flex;
       align-items: center;
@@ -199,7 +192,7 @@
     .rating {
   display: flex;
   gap: 3px;
-  margin-left: auto; /* Sesuaikan margin */
+  margin-left: auto;
   padding-left: 10px;
   align-items: center;
 }
@@ -234,7 +227,6 @@
       top: -20px;
     }
 
-    /* Gaya khusus untuk card resep */
 .recipe-card {
   background: #0077b6;
   border-radius: 12px;
@@ -243,12 +235,12 @@
   transition: all 0.3s ease;
   cursor: pointer;
 }
-    /* Animasi hover */
+
 .recipe-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
 }
-    /* Layout harga berbeda */
+
 .recipe-card .price {
   font-size: 1rem;
   font-weight: 450;
@@ -258,8 +250,7 @@
   bottom: 5px;
   top: 1px;
 }
-    
-    /* Action Buttons */
+
     .actions {
       display: flex;
       justify-content: space-between;
@@ -290,7 +281,7 @@
       background: #d1ddff;
       color: rgb(11, 9, 107);
     }
-    /* Perbaikan untuk button beli sekarang */
+
 .buy-btn {
   background: white;
   color: rgb(11, 9, 107);
@@ -300,8 +291,8 @@
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
-  width: calc(100% - 30px); /* Lebar dikurangi padding */
-  margin: 10px 15px 15px; /* Sesuaikan margin */
+  width: calc(100% - 30px);
+  margin: 10px 15px 15px;
   transition: all 0.2s;
 }
 
@@ -309,7 +300,7 @@
   transform: translateY(-2px);
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
-    /* Recipe Card Specific */
+
     .recipe-card .actions {
   flex-direction: column;
   padding: 0 15px 15px;
@@ -350,30 +341,99 @@
   color: #1E3A8A;
 }
     .recipe-card .recipe-btn {
-  width: 100%; /* Ubah dari 100% ke auto */
-  margin-top: 0; /* Hilangkan margin top */
+  width: 100%;
+  margin-top: 0;
 }
     .recipe-card .product-info {
-  margin-top: -20px; /* Sesuaikan untuk recipe card */
+  margin-top: -20px;
 }
 
 .recipe-card .product-info h3 {
-  margin-bottom: 5px; /* Tambahkan sedikit jarak */
+  margin-bottom: 5px;
 }
 
 .recipe-card .price {
-  margin: 5px 0; /* Sesuaikan margin harga */
+  margin: 5px 0;
 }
-    /* Footer */
+
     footer {
-      background: #1E3A8A;
+      background-color: #009fe3;
       color: white;
+      padding: 2rem 1rem 1rem;
+      margin-top: 2rem;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 20px;
+      color: white;
+    }
+
+    .footer-left,
+    .footer-right {
+      margin-bottom: 1.5rem;
+      max-width: 45%;
+      box-sizing: border-box;
+    }
+
+    .footer-left h4,
+    .footer-right h4 {
+      margin-top: 0;
+      font-weight: 800;
+    }
+
+    .footer-left p,
+    .footer-right p {
+      margin: 8px 0;
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    .footer-nav span {
+          margin-right: 10px;
+          display: inline-block;
+          margin-top: 10px;
+          cursor: pointer;
+          user-select: none;
+          font-weight: 700;
+    }
+
+    .footer-nav {
+      margin-top: 1rem;
+      display: flex;
+      gap: 1rem;
+      font-weight: bold;
+    }
+
+    .footer-nav a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.3s ease, font-weight 0.3s ease;
+      font-weight: normal;
+    }
+
+    .footer-nav a:hover {
+      color: white;
+      text-decoration: underline;
+    }
+
+    .footer-nav a.active {
+      font-weight: 700; /* bold */
+    }
+
+    footer p {
+      margin: 4px 0;
+    }
+
+    footer .copyright {
       text-align: center;
-      padding: 30px 20px;
-      font-size: 0.9rem;
+      margin-top: 1rem;
+      font-size: 12px;
+      opacity: 0.7;
     }
     
-    /* Modal styles */
     .modal {
       display: none;
       position: fixed;
@@ -427,6 +487,17 @@
       border-bottom: 1px solid #E5E7EB;
       color: #1E3A8A;
     }
+    .highlighted {
+  outline: 3px solid gold;
+  animation: highlightFlash 5s ease-out;
+}
+
+@keyframes highlightFlash {
+  0% { box-shadow: 0 0 10px gold; }
+  100% { box-shadow: 0 0 0px transparent; }
+}
+
+
   </style>
 </head>
 <body>
@@ -454,13 +525,12 @@
     </div>
   </header>
 
-  <!-- Tangkapan Hari Ini -->
-  <section id="tangkapan" class="section">
-    <h2>Tangkapan Hari Ini</h2>
-    <p class="subtitle">Baru datang dari laut kurang dari 3 jam yang lalu</p>
-    <div class="cards">
+<section id="tangkapan" class="section">
+  <h2>Tangkapan Hari Ini</h2>
+  <p class="subtitle">Baru datang dari laut kurang dari 3 jam yang lalu</p>
+  <div class="cards" id="productContainer">
     <!-- Ikan Belanak -->
-    <div class="card" data-category="ikan">
+    <div class="card" id="product-ikan-belanak" data-category="ikan">
       <div class="image-container">
         <img src="img/ikan belanak.png" alt="Ikan Belanak" class="product-image">
         <span class="badge">Baru ditangkap</span>
@@ -477,17 +547,17 @@
         <button class="detail-btn" onclick="viewDetail('ikan-belanak')">
           <i class="fas fa-info-circle"></i> Lihat Detail
         </button>
-        <button class="cart-btn" onclick="addToCart('Ikan Belanak', 40000, 'img/ikan belanak.png')">
+        <button class="cart-btn" onclick="addToCart('Ikan Belanak', 40000, 'img/ikan-belanak.png')">
           <i class="fas fa-shopping-cart"></i>
         </button>
       </div>
-      <button class="buy-btn" onclick="buyNow('ikan belanak', 40000, 'img/ikan belanak.png', 'Budi Fisherman')">
+      <button class="buy-btn" onclick="buyNow('ikan-belanak', 40000, 'img/ikan-belanak.png', 'Budi Fisherman')">
         Beli Sekarang
       </button>
     </div>
     
     <!-- Ikan Puri -->
-    <div class="card" data-category="ikan">
+    <div class="card" id="product-ikan-puri" data-category="ikan">
       <div class="image-container">
         <img src="img/ikan puri.png" alt="Ikan Puri" class="product-image">
         <span class="badge">Baru ditangkap</span>
@@ -504,17 +574,17 @@
         <button class="detail-btn" onclick="viewDetail('ikan-puri')">
           <i class="fas fa-info-circle"></i> Lihat Detail
         </button>
-        <button class="cart-btn" onclick="addToCart('Ikan Puri', 25000, 'img/ikan puri.png')">
+        <button class="cart-btn" onclick="addToCart('Ikan Puri', 25000, 'img/ikan-puri.png')">
           <i class="fas fa-shopping-cart"></i>
         </button>
       </div>
-      <button class="buy-btn" onclick="buyNow('ikan-puri', 25000, 'img/ikan puri.png', 'Budi Fisherman')">
+      <button class="buy-btn" onclick="buyNow('ikan-puri', 25000, 'img/ikan-puri.png', 'Budi Fisherman')">
         Beli Sekarang
       </button>
     </div>
     
     <!-- Udang -->
-    <div class="card" data-category="udang">
+    <div class="card" id="product-udang" data-category="udang">
       <div class="image-container">
         <img src="img/udang.png" alt="Udang" class="product-image">
         <span class="badge">Baru ditangkap</span>
@@ -541,7 +611,7 @@
     </div>
 
     <!-- Kepiting -->
-    <div class="card" data-category="kepiting">
+    <div class="card" id="product-kepiting" data-category="kepiting">
       <div class="image-container">
         <img src="img/kepiting.png" alt="Kepiting" class="product-image">
         <span class="badge">Baru ditangkap</span>
@@ -568,7 +638,7 @@
     </div>
 
     <!-- Ikan Tongkol -->
-    <div class="card" data-category="ikan">
+    <div class="card" id="product-ikan-tongkol" data-category="ikan">
       <div class="image-container">
         <img src="img/ikan tongkol.png" alt="Ikan Tongkol" class="product-image">
         <span class="badge">Baru ditangkap</span>
@@ -585,17 +655,17 @@
         <button class="detail-btn" onclick="viewDetail('ikan-tongkol')">
           <i class="fas fa-info-circle"></i> Lihat Detail
         </button>
-        <button class="cart-btn" onclick="addToCart('Ikan Tongkol', 37000, 'img/ikan tongkol.png')">
+        <button class="cart-btn" onclick="addToCart('Ikan Tongkol', 37000, 'img/ikan-tongkol.png')">
           <i class="fas fa-shopping-cart"></i>
         </button>
       </div>
-      <button class="buy-btn" onclick="buyNow('ikan-tongkol', 37000, 'img/ikan tongkol.png', 'Budi Fisherman')">
+      <button class="buy-btn" onclick="buyNow('ikan-tongkol', 37000, 'img/ikan-tongkol.png', 'Budi Fisherman')">
         Beli Sekarang
       </button>
     </div>
 
     <!-- Sotong -->
-    <div class="card" data-category="sotong">
+    <div class="card" id="product-sotong" data-category="sotong">
       <div class="image-container">
         <img src="img/sotong.png" alt="Sotong" class="product-image">
         <span class="badge">Baru ditangkap</span>
@@ -627,9 +697,9 @@
 <section id="favorit" class="section">
   <h2>Favorit Hari Ini</h2>
   <p class="subtitle">Hasil laut yang paling banyak dibeli hari ini</p>
-  <div class="cards">
+  <div class="cards" id="productContainer">
     <!-- Ikan Belanak -->
-    <div class="card" data-category="ikan">
+    <div class="card" id="product-ikan-belanak" data-category="ikan">
       <div class="image-container">
         <img src="img/ikan belanak.png" alt="Ikan Belanak" class="product-image">
         <span class="badge">Baru ditangkap</span>
@@ -646,17 +716,17 @@
         <button class="detail-btn" onclick="viewDetail('ikan-belanak')">
           <i class="fas fa-info-circle"></i> Lihat Detail
         </button>
-        <button class="cart-btn" onclick="addToCart('Ikan Belanak', 40000, 'img/ikan belanak.png')">
+        <button class="cart-btn" onclick="addToCart('Ikan Belanak', 40000, 'img/ikan-belanak.png')">
           <i class="fas fa-shopping-cart"></i>
         </button>
       </div>
-      <button class="buy-btn" onclick="buyNow('ikan-belanak', 40000, 'img/ikan belanak.png', 'Budi Fisherman')">
+      <button class="buy-btn" onclick="buyNow('ikan-belanak', 40000, 'img/ikan-belanak.png', 'Budi Fisherman')">
         Beli Sekarang
       </button>
     </div>
     
     <!-- Ikan Kakap -->
-    <div class="card" data-category="ikan">
+    <div class="card" id="product-ikan-kakap" data-category="ikan">
       <div class="image-container">
         <img src="img/ikan kakap.png" alt="Ikan Kakap" class="product-image">
         <span class="badge frezer">Disimpan dalam es</span>
@@ -673,17 +743,17 @@
         <button class="detail-btn" onclick="viewDetail('ikan-kakap')">
           <i class="fas fa-info-circle"></i> Lihat Detail
         </button>
-        <button class="cart-btn" onclick="addToCart('Ikan Kakap', 72000, 'img/ikan kakap.png')">
+        <button class="cart-btn" onclick="addToCart('Ikan Kakap', 72000, 'img/ikan-kakap.png')">
           <i class="fas fa-shopping-cart"></i>
         </button>
       </div>
-      <button class="buy-btn" onclick="buyNow('ikan-kakap', 72000, 'img/ikan kakap.png', 'Susi Seafood')">
+      <button class="buy-btn" onclick="buyNow('ikan-kakap', 72000, 'img/ikan-kakap.png', 'Susi Seafood')">
         Beli Sekarang
       </button>
     </div>
     
     <!-- Udang -->
-    <div class="card" data-category="udang">
+    <div class="card" id="product-udang" data-category="udang">
       <div class="image-container">
         <img src="img/udang.png" alt="Udang" class="product-image">
         <span class="badge">Baru ditangkap</span>
@@ -715,8 +785,8 @@
 <section id="rekomendasi" class="section">
   <h2>Rekomendasi Menu Hari Ini</h2>
   <p class="subtitle">Ide masakan lezat yang bisa langsung kamu masak dari hasil laut hari ini</p>
-  <div class="cards">
-    <div class="card recipe-card" data-category="kepiting">
+  <div class="cards" id="productContainer">
+    <div class="card recipe-card" id="product-kepiting" data-category="kepiting">
       <div class="image-container">
         <img src="img/kepiting.png" alt="Kepiting" class="product-image">
         <span class="badge">Baru ditangkap</span>
@@ -741,7 +811,7 @@
     </div>
     
     <!-- Ikan Kakap -->
-    <div class="card recipe-card" data-category="ikan">
+    <div class="card recipe-card" id="product-ikan-kakap" data-category="ikan">
       <div class="image-container">
         <img src="img/ikan kakap.png" alt="Ikan Kakap" class="product-image">
         <span class="badge frezer">Disimpan dalam es</span>
@@ -752,10 +822,10 @@
       </div>
       <div class="actions">
         <div class="action-row">
-          <button class="detail-btn" onclick="buyNow('ikan-kakap', 72000, 'img/ikan kakap.png', 'Susi Seafood')">
+          <button class="detail-btn" onclick="buyNow('ikan-kakap', 72000, 'img/ikan-kakap.png', 'Susi Seafood')">
             <i class="fas fa-shopping-bag"></i> Beli Sekarang
           </button>
-          <button class="cart-btn" onclick="addToCart('Ikan Kakap', 72000, 'img/ikan kakap.png')">
+          <button class="cart-btn" onclick="addToCart('Ikan Kakap', 72000, 'img/ikan-kakap.png')">
             <i class="fas fa-shopping-cart"></i>
           </button>
         </div>
@@ -766,7 +836,7 @@
     </div>
     
     <!-- Udang -->
-    <div class="card recipe-card" data-category="udang">
+    <div class="card recipe-card" id="product-udang" data-category="udang">
       <div class="image-container">
         <img src="img/udang.png" alt="Udang" class="product-image">
         <span class="badge">Baru ditangkap</span>
@@ -792,61 +862,527 @@
   </div>
 </section>
 
- <footer style="background: #1E3A8A; color: white; padding: 40px 20px; font-family: 'Inter', sans-serif;">
-  <div style="max-width: 1200px; margin: 0 auto; text-align: left;">
-    <h2 style="font-size: 1.5rem; margin-bottom: 20px;">Lautan Kita</h2>
-    <p style="margin-bottom: 30px; max-width: 600px; line-height: 1.6;">
-      Lautan Kita adalah platform digital inovatif yang menghubungkan nelayan lokal langsung dengan konsumen dan bisnis, 
-      mengedarkan produk laut segar, transparan, dan berkelanjutan. Dengan fokus pada keadilan ekonomi untuk nelayan 
-      dan kualitas produk untuk pelanggan, aplikasi ini menjadi solusi modern untuk rantai pasok tradisional yang 
-      seringkali tidak efisien.
-    </p>
-    
-    <div style="margin-bottom: 30px;">
-      <h3 style="font-size: 1.2rem; margin-bottom: 15px;">Kontak Kami:</h3>
-      <div style="display: flex; gap: 15px; margin-bottom: 10px;">
-        <span><i class="fab fa-instagram"></i> @lautankita</span>
-        <span><i class="fab fa-facebook"></i> @lautankita</span>
+<footer>
+    <div class="footer-container">
+      <div class="footer-left">
+        <h4>Lautan Kita</h4>
+        <p>
+          Lautan Kita adalah platform digital inovatif yang menghubungkan nelayan lokal langsung dengan konsumen dan bisnis, menyediakan produk laut segar, transparan, dan berkelanjutan.
+        </p>
+        <style>
+          .footer-nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+          }
+        
+          .footer-nav a:hover {
+            color: white;
+            text-decoration: underline;
+          }
+        </style>
+        
+        <div class="footer-nav">
+          <h5><a href="home_final.html" class="footer-link">Beranda</a></h5>
+          <h5><a href="keranjang.html" class="footer-link">Keranjang</a></h5>
+          <h5><a href="pusat_bantuan.html" class="footer-link">Pusat Bantuan</a></h5>
+        </div>                      
       </div>
-      <div><i class="fas fa-envelope"></i> lautankita@gmail.com</div>
-    </div>
-    
-    <div style="border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; margin-bottom: 20px;">
-      <div style="display: flex; justify-content: space-between; max-width: 400px; margin-bottom: 20px;">
-        <a href="#" style="color: white; text-decoration: none;">Beranda</a>
-        <a href="#" style="color: white; text-decoration: none;">Keranjang</a>
-        <a href="pusat_bantuan.html" style="color: white; text-decoration: none;">Pusat Bantuan</a>
-      </div>
-      
-      <div style="margin-bottom: 20px;">
-        <h4 style="font-size: 1rem; margin-bottom: 10px;">Alamat:</h4>
-        <p>Ganet, BT 11, Tanjung Pinang Timur, Tanjung Pinang, Kepulauan Riau</p>
+      <div class="footer-right">
+        <h4>Kontak Kami:</h4>
+        <p>📸 @lautankita</p>
+        <p>🎵 @lautankita</p>
+        <p>📞 +62 811 1234 5678</p>
+        <p>✉️ lautankita@gmail.com</p>
+        <h4>Alamat:</h4>
+        <p>📍 Ganet, BT 11, Tanjung Pinang Timur, Tanjung Pinang, Kepulauan Riau</p>
       </div>
     </div>
-    
-    <div style="text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2);">
-      <p>© 2025 Lautan Kita. All rights reserved</p>
-    </div>
-  </div>
-</footer>
+    <p class="copyright">© 2025 Lautan Kita. All rights reserved</p>
+  </footer>
 
   <!-- Modals -->
   <div id="searchModal" class="modal">
     <h3>Cari Produk</h3>
     <input type="text" id="searchInput" placeholder="Cari ikan, udang, kepiting, sotong..." onkeyup="searchProducts()">
-    <div id="searchResults" style="margin-top: 15px;"></div>
+    <div id="searchResults" style="display: none;"></div>
     <button class="close-btn" onclick="toggleModal('searchModal')">Tutup</button>
   </div>
-
   <div id="filterModal" class="modal">
-    <h3>Filter Produk</h3>
-    <label><input type="checkbox" name="filter" value="ikan" checked onchange="filterProducts()"> Ikan</label>
-    <label><input type="checkbox" name="filter" value="udang" checked onchange="filterProducts()"> Udang</label>
-    <label><input type="checkbox" name="filter" value="kepiting" checked onchange="filterProducts()"> Kepiting</label>
-    <label><input type="checkbox" name="filter" value="sotong" checked onchange="filterProducts()"> Sotong</label>
-    <button class="close-btn" onclick="toggleModal('filterModal')">Tutup</button>
+  <h3>Filter Produk</h3>
+  <div id="filterCategories" class="kategori-list">
+    <div class="category-item">
+      <input type="checkbox" id="cat-ikan" name="filter" value="ikan">
+      <label for="cat-ikan">Ikan</label>
+    </div>
+    <div class="category-item">
+      <input type="checkbox" id="cat-udang" name="filter" value="udang">
+      <label for="cat-udang">Udang</label>
+    </div>
+    <div class="category-item">
+      <input type="checkbox" id="cat-kepiting" name="filter" value="kepiting">
+      <label for="cat-kepiting">Kepiting</label>
+    </div>
+    <div class="category-item">
+      <input type="checkbox" id="cat-sotong" name="filter" value="sotong">
+      <label for="cat-sotong">Sotong</label>
+    </div>
   </div>
+  <button class="close-btn" onclick="toggleModal('filterModal')">Tutup</button>
+</div>
+  <script>
+  // DATA PRODUK LENGKAP DENGAN KATEGORI
+  const products = {
+    'ikan-belanak': {
+      id: 'ikan-belanak',
+      name: 'Ikan Belanak',
+      price: 40000,
+      image: "img/ikan belanak.png",
+      category: 'ikan',
+      description: 'Ikan belanak segar langsung dari laut, ditangkap pagi ini dengan metode ramah lingkungan.',
+      seller: 'Budi Fisherman',
+      rating: 5,
+      stock: 15, // dalam kg (diubah dari string ke number untuk perhitungan)
+      benefits: ['Kaya omega-3', 'Protein tinggi', 'Segar langsung dari laut'],
+      reviews: [
+        { user: 'Andi', rating: 5, comment: 'Sangat segar!' },
+        { user: 'Siti', rating: 4, comment: 'Pengiriman cepat' }
+      ]
+    },
+    'ikan-puri': {
+      id: 'ikan-puri',
+      name: 'Ikan Puri',
+      price: 25000,
+      image: "img/ikan puri.png",
+      category: 'ikan',
+      description: 'Ikan puri segar dengan daging yang lembut dan gurih.',
+      seller: 'Budi Fisherman',
+      rating: 4,
+      stock: 9,
+      benefits: ['Rendah lemak', 'Kaya protein', 'Cocok untuk berbagai masakan']
+    },
+    'udang': {
+      id: 'udang',
+      name: 'Udang',
+      price: 28000,
+      image: "img/udang.png",
+      category: 'udang',
+      description: 'Udang segar ukuran besar dengan cita rasa manis alami.',
+      seller: 'Susi Seafood',
+      rating: 5,
+      stock: 7,
+      benefits: ['Segar langsung dari tambak', 'Ukuran besar', 'Bersih']
+    },
+    'kepiting': {
+      id: 'kepiting',
+      name: 'Kepiting',
+      price: 40000,
+      image: "img/kepiting.png",
+      category: 'kepiting',
+      description: 'Kepiting segar dengan daging yang padat dan lezat.',
+      seller: 'Joko Nelayan',
+      rating: 4,
+      stock: 15,
+      benefits: ['Daging padat', 'Segar', 'Kaya nutrisi']
+    },
+    'ikan-tongkol': {
+      id: 'ikan-tongkol',
+      name: 'Ikan Tongkol',
+      price: 37000,
+      image: "img/ikan tongkol.png",
+      category: 'ikan',
+      description: 'Ikan tongkol segar dengan tekstur daging yang kenyal.',
+      seller: 'Budi Fisherman',
+      rating: 4,
+      stock: 12,
+      benefits: ['Kaya protein', 'Tekstur kenyal', 'Cocok untuk berbagai masakan']
+    },
+    'sotong': {
+      id: 'sotong',
+      name: 'Sotong',
+      price: 64000,
+      image: "img/sotong.png",
+      category: 'sotong',
+      description: 'Sotong segar dengan cita rasa khas yang lezat.',
+      seller: 'Joko Nelayan',
+      rating: 5,
+      stock: 8,
+      benefits: ['Segar', 'Tekstur lembut', 'Kaya protein']
+    },
+    'ikan-kakap': {
+      id: 'ikan-kakap',
+      name: 'Ikan Kakap',
+      price: 72000,
+      image: "img/ikan kakap.png",
+      category: 'ikan',
+      description: 'Ikan kakap merah segar dengan daging tebal dan lembut.',
+      seller: 'Susi Seafood',
+      rating: 5,
+      stock: 11,
+      benefits: ['Daging tebal', 'Kualitas premium', 'Segar']
+    }
+  };
 
-  <script src="home.js"></script>
+  // INISIALISASI DATA
+  function initApp() {
+    // Inisialisasi produk jika belum ada
+    if (!localStorage.getItem('products')) {
+      localStorage.setItem('products', JSON.stringify(products));
+    }
+    
+    // Inisialisasi keranjang jika belum ada
+    if (!localStorage.getItem('cart')) {
+      localStorage.setItem('cart', JSON.stringify([]));
+    }
+    
+    // Inisialisasi riwayat belanja jika belum ada
+    if (!localStorage.getItem('orderHistory')) {
+      localStorage.setItem('orderHistory', JSON.stringify([]));
+    }
+    
+    updateCartCounter();
+    renderProductCategories();
+  }
+
+  // RENDER KATEGORI PRODUK UNTUK FILTER
+  function renderFilterCategories() {
+      const categoriesContainer = document.getElementById('filterCategories');
+      if (!categoriesContainer) return;
+      const allProducts = JSON.parse(localStorage.getItem('products')) || {};
+      const categories = [...new Set(Object.values(allProducts).map(p => p.category).filter(Boolean))];
+      categoriesContainer.innerHTML = '';
+      categories.forEach(category => {
+        const div = document.createElement('div');
+        div.className = 'category-item';
+        div.innerHTML = `
+          <input type="checkbox" id="cat-${category}" name="filter" value="${category}" class="filter-checkbox">
+          <label for="cat-${category}">${capitalizeFirstLetter(category)}</label>`;
+        categoriesContainer.appendChild(div);
+      });
+    }
+
+  function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  // TOGGLE MODAL
+  function toggleModal(id) {
+    const modal = document.getElementById(id);
+      modal.classList.toggle('active');
+    if (action === 'open') {
+      modal.classList.add('active');
+    } else if (action === 'close') {
+      modal.classList.remove('active');
+    } else {
+      modal.classList.toggle('active');
+    }
+    
+    if (id === 'searchModal') {
+      document.getElementById('searchInput').focus();
+    }
+  }
+
+  // LIHAT DETAIL PRODUK
+  function viewDetail(productId) {
+    const product = products[productId];
+    if (product) {
+      localStorage.setItem('currentProduct', JSON.stringify(product));
+      window.location.href = `desktop_2.html?id=${productId}`;
+    } else {
+      showAlert('error', 'Produk tidak ditemukan');
+    }
+  }
+
+  // BELI SEKARANG
+function buyNow(productId) {
+  const product = products[productId];
+  if (!product) return;
+  
+  const checkoutData = {
+    id: product.id,
+    name: product.name,
+    price: product.price,
+    image: product.image,
+    seller: product.seller,
+    description: product.description,
+    stock: product.stock
+  };
+  
+  localStorage.setItem('productToCheckout', JSON.stringify(checkoutData));
+  window.location.href = 'checkout.html';
+}
+    
+    // Siapkan data untuk checkout
+    const checkoutData = {
+        items: [{
+            id: product.id,
+            name: product.name,
+            price: product.price,
+            image: product.image,
+            seller: product.seller,
+            quantity: 1,
+            stock: product.stock
+        }],
+        total: product.price,
+        date: new Date().toISOString()
+    };
+    
+    // Simpan ke localStorage
+    localStorage.setItem('checkoutData', JSON.stringify(checkoutData));
+    
+    // Redirect ke halaman checkout
+    window.location.href = 'checkout.html';
+
+  // UPDATE COUNTER KERANJANG
+  function updateCartCounter() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const counter = document.querySelector('.cart-counter');
+    
+    if (!counter) return;
+    
+    const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+    counter.textContent = totalItems;
+    counter.style.display = totalItems > 0 ? 'flex' : 'none';
+  }
+
+  // FITUR PENCARIAN
+  function searchProducts() {
+    const input = document.getElementById('searchInput').value.toLowerCase().trim();
+    const modal = document.getElementById('searchModal');
+
+    if (input.length < 2) return;
+
+    // cari elemen//
+    const cards =document.querySelectorAll('.card');
+    let found = false;
+
+    cards.forEach(card=>{
+      const productName= card.querySelector('h3')?.textContent.toLowerCase();
+      if (productName && productName.includes(input)){
+        found = true;
+
+        //scroll ke card//
+       card.scrollIntoView({behavior: 'smooth', block: 'center'});
+       // efek
+       card.classList.add('highlighted');
+       setTimeout(() => {
+       card.classList.remove('highlighted');
+       },2000);
+       // tutup modal
+       toggleModal('searchModal', 'close');
+      }
+    });
+    if(!found){
+      alert("produk tidak ditemukan");
+    }
+  }
+
+  // FILTER PRODUK BERDASARKAN KATEGORI
+  function filterProducts() {
+  const checked = Array.from(document.querySelectorAll('input[name="filter"]:checked')).map(cb => cb.value);
+  const allCards = document.querySelectorAll('.card');
+
+  allCards.forEach(card=>{
+    const category = card.dataset.category?.trim();
+
+    if (checked.length===0 || checked.includes(category)) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+//fmuat 
+document.addEventListener('DOMContentLoaded', ()=>{
+   initApp();
+  renderFilterCategories();
+  renderRekomendasiMenu();
+  filterProducts();
+})
+// Event listener filter pada modal
+  document.querySelectorAll('input[name="filter"]').forEach(cb => {
+  cb.addEventListener('change', filterProducts);
+});
+  // Pencarian produk
+  document.getElementById('searchInput')?.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') searchProducts();
+  });
+  // Klik di luar modal untuk menutup
+  document.querySelectorAll('.modal').forEach(modal => {
+    modal.addEventListener('click', function(e) {
+      if (e.target === this) toggleModal(this.id, 'close');
+    });
+  });
+
+  // aktifkan filter ketika ada yang diklik
+  document.querySelector('#modal-filter').addEventListener('change', (e) => {
+    if (e.target.classList.contains('filter-checkbox')) {
+      filterProducts();
+    }
+  });
+  // pencarian
+  document.getElementById('searchInput')?.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') searchProducts();
+  });
+
+  // klik di luar modal
+  document.querySelectorAll('.modal').forEach(modal => {
+    modal.addEventListener('click', function(e) {
+      if (e.target === this) toggleModal(this.id, 'close');
+    });
+  });
+
+
+  // aktifkan filter ketika ada yang diklik
+  document.querySelector('#modal-filter').addEventListener('change', (e) => {
+    if (e.target.classList.contains('filter-checkbox')) {
+      filterProducts();
+    }
+  });
+
+
+
+  // SORTIR PRODUK
+  function sortProducts(sortBy) {
+    const productContainer = document.getElementById('productContainer');
+    if (!productContainer) return;
+    
+    const productCards = Array.from(document.querySelectorAll('.product-card'));
+    
+    productCards.sort((a, b) => {
+      const priceA = parseInt(a.dataset.price);
+      const priceB = parseInt(b.dataset.price);
+      const ratingA = parseInt(a.dataset.rating);
+      const ratingB = parseInt(b.dataset.rating);
+      
+      switch(sortBy) {
+        case 'price-asc':
+          return priceA - priceB;
+        case 'price-desc':
+          return priceB - priceA;
+        case 'rating':
+          return ratingB - ratingA;
+        case 'name':
+          return a.dataset.name.localeCompare(b.dataset.name);
+        default:
+          return 0;
+      }
+    });
+    
+    productCards.forEach(card => productContainer.appendChild(card));
+  }
+
+  // FORMAT HARGA
+  function formatPrice(price) {
+    return new Intl.NumberFormat('id-ID').format(price);
+  }
+
+  // TAMPILKAN ALERT
+  function showAlert(type, message) {
+    const alertBox = document.createElement('div');
+    alertBox.className = `alert ${type}`;
+    alertBox.textContent = message;
+    
+    document.body.appendChild(alertBox);
+    
+    setTimeout(() => {
+      alertBox.classList.add('fade-out');
+      setTimeout(() => alertBox.remove(), 500);
+    }, 3000);
+  }
+
+  // EVENT LISTENERS
+  document.addEventListener('DOMContentLoaded', function() {
+    initApp();
+    
+    // Pencarian saat menekan Enter
+    document.getElementById('searchInput')?.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') searchProducts();
+    });
+    
+    // Klik di luar modal untuk menutup
+    document.querySelectorAll('.modal').forEach(modal => {
+      modal.addEventListener('click', function(e) {
+        if (e.target === this) toggleModal(this.id, 'close');
+      });
+    });
+  });
+
+  // EKSPOR FUNGSI UNTUK DIGUNAKAN DI FILE LAIN
+  if (typeof window !== 'undefined') {
+    window.eCommerceApp = {
+      products,
+      buyNow,
+      addToCart,
+      viewDetail,
+      updateCartCounter,
+      formatPrice,
+      showAlert
+    };
+  }
+  function renderRekomendasiMenu() {
+  const container = document.querySelector("#rekomendasi .cards");
+  if (!container) return;
+
+  const allProducts = JSON.parse(localStorage.getItem('products')) || {};
+  container.innerHTML = ''; // kosongkan dulu
+
+  Object.values(allProducts).forEach(product => {
+    const card = document.createElement('div');
+    card.className = 'card recipe-card';
+    card.dataset.category = product.category;
+
+    card.innerHTML = `
+      <div class="image-container">
+        <img src="${product.image}" alt="${product.name}" class="product-image">
+        <span class="badge">${product.stock > 10 ? 'Baru ditangkap' : 'Disimpan dalam es'}</span>
+      </div>
+      <div class="product-info">
+        <h3>${product.name}</h3>
+        <p class="price">Rp. ${product.price.toLocaleString('id-ID')}/kg</p>
+      </div>
+      <div class="actions">
+        <div class="action-row">
+          <button class="detail-btn" onclick="buyNow('${product.id}', ${product.price}, '${product.image}', '${product.seller}')">
+            <i class="fas fa-shopping-bag"></i> Beli Sekarang
+          </button>
+          <button class="cart-btn" onclick="addToCart('${product.name}', ${product.price}, '${product.image}')">
+            <i class="fas fa-shopping-cart"></i>
+          </button>
+        </div>
+        <button class="recipe-btn" onclick="window.open('https://cookpad.com/id/cari/${encodeURIComponent(product.name)}','_blank')">
+          <i class="fas fa-book-open"></i> Lihat Resep
+        </button>
+      </div>
+    `;
+
+    container.appendChild(card);
+  });
+}
+</script>
+
+<script>
+// Perbaiki Event Listener FILTER (pasti aktif)
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('#filterCategories input[type="checkbox"]').forEach(cb => {
+    cb.addEventListener('change', filterProducts);
+  });
+});
+
+// Perbaiki fungsi addToCart agar update localStorage dan counter dengan benar
+function addToCart(name, price, image) {
+  const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const existing = cart.find(item => item.name === name);
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    cart.push({ name, price, image, quantity: 1 });
+  }
+  localStorage.setItem('cart', JSON.stringify(cart));
+  updateCartCounter();
+  alert(name + " ditambahkan ke keranjang!");
+}
+</script>
+
 </body>
 </html>
