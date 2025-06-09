@@ -64,22 +64,30 @@
   </div>
 
   <script>
-    const pesanan = JSON.parse(localStorage.getItem("dataPesanan"));
+    document.addEventListener("DOMContentLoaded", function () {
+      const pesanan = JSON.parse(localStorage.getItem("currentOrder"));
 
-    if (pesanan) {
-      document.getElementById("pesanan-container").innerHTML = `
-        <div class="item-row"><span>Produk</span><span>${pesanan.produk}</span></div>
-        <div class="item-row"><span>Jumlah</span><span>${pesanan.jumlah} Kg</span></div>
-        <div class="item-row"><span>Harga per Kg</span><span>Rp. ${pesanan.hargaPerKg.toLocaleString()}</span></div>
-        <div class="item-row"><span>Kurir</span><span>${pesanan.kurir.charAt(0).toUpperCase() + pesanan.kurir.slice(1)}</span></div>
-        <div class="item-row"><span>Ongkos Kirim</span><span>Rp. ${pesanan.ongkir.toLocaleString()}</span></div>
-        <div class="item-row"><span>Metode Pembayaran</span><span>${pesanan.metodePembayaran}</span></div>
-        <hr>
-        <div class="item-row total"><span>Total Bayar</span><span>Rp. ${pesanan.total.toLocaleString()}</span></div>
-      `;
-    } else {
-      document.getElementById("pesanan-container").innerHTML = "<p>Data pesanan tidak ditemukan.</p>";
-    }
+      if (pesanan && pesanan.produk) {
+        const produk = pesanan.produk;
+        const pengiriman = pesanan.pengiriman;
+        const metode = pesanan.pembayaran;
+
+        const hargaTotal = produk.price * produk.quantity;
+
+        document.getElementById("pesanan-container").innerHTML = `
+          <div class="item-row"><span>Produk</span><span>${produk.name}</span></div>
+          <div class="item-row"><span>Jumlah</span><span>${produk.quantity} Kg</span></div>
+          <div class="item-row"><span>Harga per Kg</span><span>Rp. ${produk.price.toLocaleString('id-ID')}</span></div>
+          <div class="item-row"><span>Kurir</span><span>${pengiriman.kurir}</span></div>
+          <div class="item-row"><span>Ongkos Kirim</span><span>Rp. ${pengiriman.ongkos.toLocaleString('id-ID')}</span></div>
+          <div class="item-row"><span>Metode Pembayaran</span><span>${metode}</span></div>
+          <hr>
+          <div class="item-row total"><span>Total Bayar</span><span>Rp. ${pesanan.total.toLocaleString('id-ID')}</span></div>
+        `;
+      } else {
+        document.getElementById("pesanan-container").innerHTML = "<p>Data pesanan tidak ditemukan.</p>";
+      }
+    });
   </script>
 </body>
 </html>
