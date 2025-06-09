@@ -51,7 +51,7 @@
       border: none;
       border-radius: 10px;
       padding: 10px;
-      color: #fff;
+      color: #F0F9FF;
       font-size: 18px;
       cursor: pointer;
     }
@@ -64,11 +64,12 @@
     header h2 {
       font-size: 2.5rem;
       margin-bottom: 15px;
-      color: #eaebff; /*langsung dari laut*/
+      color: #F0F9FF; /*langsung dari laut*/
     }
     header p {
       font-size: 1.2rem;
-      color: #eaebff;/*temukan tangkapan*/
+      color: #F0F9FF;/*temukan tangkapan*/
+      font-weight: 500;
       margin-bottom: 25px;
       max-width: 600px;
     }
@@ -78,7 +79,7 @@
     }
     .cta-buttons button {
       background-color: #3b9beb;
-      color: white;
+      color: #F0F9FF(255, 0, 0);
       border: none;
       padding: 15px 25px;
       font-size: 1rem;
@@ -497,6 +498,29 @@
   100% { box-shadow: 0 0 0px transparent; }
 }
 
+@media(max-width:600px){
+    footer {
+    padding: 1.5rem 1rem;
+  }
+  .footer-container {
+    flex-direction: column;
+  }
+  .footer-left,
+  .footer-right {
+    max-width: 100%;
+  }
+  
+  .footer-right p {
+    margin: 6px 0;
+  }
+
+  .user-review .product-image {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+
 
   </style>
 </head>
@@ -532,7 +556,7 @@
     <!-- Ikan Belanak -->
     <div class="card" id="product-ikan-belanak" data-category="ikan">
       <div class="image-container">
-        <img src="img/ikan belanak.png" alt="Ikan Belanak" class="product-image">
+        <img src="img/ikan-belanak.png" alt="Ikan Belanak" class="product-image">
         <span class="badge">Baru ditangkap</span>
       </div>
       <div class="product-info">
@@ -559,7 +583,7 @@
     <!-- Ikan Puri -->
     <div class="card" id="product-ikan-puri" data-category="ikan">
       <div class="image-container">
-        <img src="img/ikan puri.png" alt="Ikan Puri" class="product-image">
+        <img src="img/ikan-puri.png" alt="Ikan Puri" class="product-image">
         <span class="badge">Baru ditangkap</span>
       </div>
       <div class="product-info">
@@ -640,7 +664,7 @@
     <!-- Ikan Tongkol -->
     <div class="card" id="product-ikan-tongkol" data-category="ikan">
       <div class="image-container">
-        <img src="img/ikan tongkol.png" alt="Ikan Tongkol" class="product-image">
+        <img src="img/ikan-tongkol.png" alt="Ikan Tongkol" class="product-image">
         <span class="badge">Baru ditangkap</span>
       </div>
       <div class="product-info">
@@ -701,7 +725,7 @@
     <!-- Ikan Belanak -->
     <div class="card" id="product-ikan-belanak" data-category="ikan">
       <div class="image-container">
-        <img src="img/ikan belanak.png" alt="Ikan Belanak" class="product-image">
+        <img src="img/ikan-belanak.png" alt="Ikan Belanak" class="product-image">
         <span class="badge">Baru ditangkap</span>
       </div>
       <div class="product-info">
@@ -728,7 +752,7 @@
     <!-- Ikan Kakap -->
     <div class="card" id="product-ikan-kakap" data-category="ikan">
       <div class="image-container">
-        <img src="img/ikan kakap.png" alt="Ikan Kakap" class="product-image">
+        <img src="img/ikan-kakap.png" alt="Ikan Kakap" class="product-image">
         <span class="badge frezer">Disimpan dalam es</span>
       </div>
       <div class="product-info">
@@ -804,7 +828,7 @@
             <i class="fas fa-shopping-cart"></i>
           </button>
         </div>
-        <button class="recipe-btn" onclick="window.open('https://cookpad.com/id/cari/kepiting','_blank')">
+        <button class="recipe-btn" onclick="window.open('https://cookpad.com/id/cari/kepiting%20saos%20padang','_blank')">
           <i class="fas fa-book-open"></i> Lihat Resep
         </button>
       </div>
@@ -813,7 +837,7 @@
     <!-- Ikan Kakap -->
     <div class="card recipe-card" id="product-ikan-kakap" data-category="ikan">
       <div class="image-container">
-        <img src="img/ikan kakap.png" alt="Ikan Kakap" class="product-image">
+        <img src="img/ikan-kakap.png" alt="Ikan Kakap" class="product-image">
         <span class="badge frezer">Disimpan dalam es</span>
       </div>
       <div class="product-info">
@@ -829,7 +853,7 @@
             <i class="fas fa-shopping-cart"></i>
           </button>
         </div>
-        <button class="recipe-btn" onclick="window.open('https://cookpad.com/id/cari/ikan%20kakap','_blank')">
+        <button class="recipe-btn" onclick="window.open('https://cookpad.com/id/cari/ikan%20kakap%20bakar','_blank')">
           <i class="fas fa-book-open"></i> Lihat Resep
         </button>
       </div>
@@ -854,7 +878,7 @@
             <i class="fas fa-shopping-cart"></i>
           </button>
         </div>
-        <button class="recipe-btn" onclick="window.open('https://cookpad.com/id/cari/udang','_blank')">
+        <button class="recipe-btn" onclick="window.open('https://cookpad.com/id/cari/udang%20saos%20tiram','_blank')">
           <i class="fas fa-book-open"></i> Lihat Resep
         </button>
       </div>
@@ -937,7 +961,7 @@
       id: 'ikan-belanak',
       name: 'Ikan Belanak',
       price: 40000,
-      image: "img/ikan belanak.png",
+      image: "img/ikan-belanak.png",
       category: 'ikan',
       description: 'Ikan belanak segar langsung dari laut, ditangkap pagi ini dengan metode ramah lingkungan.',
       seller: 'Budi Fisherman',
@@ -953,7 +977,7 @@
       id: 'ikan-puri',
       name: 'Ikan Puri',
       price: 25000,
-      image: "img/ikan puri.png",
+      image: "img/ikan-puri.png",
       category: 'ikan',
       description: 'Ikan puri segar dengan daging yang lembut dan gurih.',
       seller: 'Budi Fisherman',
@@ -989,7 +1013,7 @@
       id: 'ikan-tongkol',
       name: 'Ikan Tongkol',
       price: 37000,
-      image: "img/ikan tongkol.png",
+      image: "img/ikan-tongkol.png",
       category: 'ikan',
       description: 'Ikan tongkol segar dengan tekstur daging yang kenyal.',
       seller: 'Budi Fisherman',
@@ -1013,7 +1037,7 @@
       id: 'ikan-kakap',
       name: 'Ikan Kakap',
       price: 72000,
-      image: "img/ikan kakap.png",
+      image: "img/ikan-kakap.png",
       category: 'ikan',
       description: 'Ikan kakap merah segar dengan daging tebal dan lembut.',
       seller: 'Susi Seafood',
