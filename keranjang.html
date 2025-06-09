@@ -80,12 +80,8 @@
       // Tombol pesan
       document.getElementById("pesanBtn").addEventListener("click", () => {
         if (cartItems.length > 0) {
-<<<<<<< HEAD
           alert("Pesanan berhasil dibuat!");
           localStorage.removeItem('cart');
-=======
-          localStorage.setItem("checkoutItems", JSON.stringify(cartItems));
->>>>>>> 47675d6a95962f77ad1c4f41767f41e0a2cf2eac
           window.location.href = "checkout.html";
         } else {
           alert("Keranjang kosong.");
