@@ -6,6 +6,92 @@
   <title>Ikan Belanak - Lautan Kita</title>
   <link rel="stylesheet" href="Desktop2style.css" />
 </head>
+<script>
+window.onload = function() {
+  // Ambil id produk dari URL
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get("id");
+  if (!id) return;
+
+  // Ambil data produk dari localStorage
+  const products = JSON.parse(localStorage.getItem("products") || "{}");
+  const product = products[id];
+  if (!product) return;
+
+  // --- Bagian detail produk (seperti sebelumnya) ---
+  // Ganti gambar produk
+  const img = document.querySelector(".image-wrapper img");
+  if (img) {
+    img.src = product.image;
+    img.alt = product.name;
+  }
+
+  // Ganti nama produk
+  const nameEl = document.querySelector(".product-info h1");
+  if (nameEl) nameEl.textContent = product.name;
+
+  // Ganti harga
+  const priceEl = document.querySelector(".product-info .price");
+  if (priceEl) priceEl.textContent = "Rp. " + product.price.toLocaleString("id-ID") + "/kg";
+
+  // Ganti stok
+  const stockEl = document.querySelector(".product-info .stock");
+  if (stockEl) stockEl.textContent = "Stok: " + product.stock + " kg";
+
+  // Ganti deskripsi
+  const descEl = document.querySelector(".description.info-card p");
+  if (descEl) descEl.textContent = product.description;
+
+  // Ganti penjual (seller)
+  const sellerEl = document.querySelectorAll(".review-card .review-name")[0];
+  if (sellerEl) sellerEl.textContent = product.seller || "-";
+
+  // Ganti rating produk (rating yang di info kanan atas dan seller)
+  const ratingEls = document.querySelectorAll(".rating");
+  ratingEls.forEach((ratingEl, idx) => {
+    let stars = "";
+    let starValue = (idx === 2 && product.reviews && product.reviews[0]) ? product.reviews[0].rating : (product.rating || 4);
+    for (let i = 0; i < 5; i++) {
+      stars += i < starValue ? "★" : "☆";
+    }
+    ratingEl.textContent = stars;
+  });
+
+  // --- Bagian review pembeli ---
+  // Card kedua adalah user review
+  const userReviewCards = document.querySelectorAll('.review-card.info-card');
+  if (userReviewCards.length > 1 && product.reviews && product.reviews.length > 0) {
+    const firstReview = product.reviews[0];
+    const userReviewCard = userReviewCards[1];
+
+    // Gambar avatar user
+    const avatar = userReviewCard.querySelector('.avatar');
+    if (avatar) avatar.src = firstReview.avatar || "img/pembeli.png";
+
+    // Nama user
+    const reviewName = userReviewCard.querySelector('.review-name');
+    if (reviewName) reviewName.textContent = firstReview.user || "-";
+
+    // Komentar user
+    const reviewText = userReviewCard.querySelector('.review-text');
+    if (reviewText) reviewText.textContent = firstReview.comment || "";
+
+    // Gambar review (hasil tangkapan)
+    const reviewImg = userReviewCard.querySelector('.review-img');
+    if (reviewImg && firstReview.img) reviewImg.src = firstReview.img;
+
+    // Rating bintang user
+    const reviewRating = userReviewCard.querySelector('.rating');
+    if (reviewRating) {
+      let stars = "";
+      for (let i = 0; i < 5; i++) {
+        stars += i < (firstReview.rating || 4) ? "★" : "☆";
+      }
+      reviewRating.textContent = stars;
+    }
+  }
+};
+</script>
 <body>
   <div class="container">
     <a class="back-button" href="home_final.html">⬅️</a>
