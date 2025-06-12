@@ -11,7 +11,6 @@
       --primary-bg: #0077B6;
       --header-bg: #EFF6FF;
       --body-bg: #EFF6FF;
-      
       --price-color: #0077B6;
     }
   </style>
@@ -43,6 +42,30 @@
 
   <!-- Script -->
   <script>
+    // FUNGSI BARU: Tambah ke keranjang langsung (bisa ditempel di halaman produk juga)
+    // Gunakan: tambahKeKeranjang(id, name, image, price, qty)
+    function tambahKeKeranjang(produkId, nama, gambar, harga, jumlah = 1) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let found = cart.find(item => item.id === produkId);
+      jumlah = parseInt(jumlah) || 1;
+      if (found) {
+        found.quantity += jumlah;
+      } else {
+        cart.push({
+          id: produkId,
+          name: nama,
+          image: gambar,
+          price: harga,
+          quantity: jumlah
+        });
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert('Produk ditambahkan ke keranjang!');
+    }
+
+    // CONTOH PEMAKAIAN (hapus/comment jika tidak perlu)
+    // tambahKeKeranjang('ikan belanak', 'Ikan Belanak', 'img/ikan-belanak.png', 40000, 2);
+
     document.addEventListener("DOMContentLoaded", () => {
       const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
       const container = document.getElementById('cartItemsContainer');
@@ -50,6 +73,8 @@
 
       if (cartItems.length === 0) {
         container.innerHTML = '<p class="text-center text-gray-600">Keranjang Anda kosong.</p>';
+        document.getElementById("pesanBtn").disabled = true;
+        document.getElementById("pesanBtn").classList.add("opacity-50", "cursor-not-allowed");
         return;
       }
 
@@ -82,7 +107,7 @@
       document.getElementById("pesanBtn").addEventListener("click", () => {
         if (cartItems.length > 0) {
           alert("Pesanan berhasil dibuat!");
-          localStorage.removeItem('cart');
+          // Jangan hapus cart! Checkout akan menghapusnya setelah transaksi sukses
           window.location.href = "checkout.html";
         } else {
           alert("Keranjang kosong.");

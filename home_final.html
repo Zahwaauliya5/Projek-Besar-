@@ -954,7 +954,7 @@
   </div>
   <button class="close-btn" onclick="toggleModal('filterModal')">Tutup</button>
 </div>
-  <script>
+<script>
   // DATA PRODUK LENGKAP DENGAN KATEGORI
   const products = {
     'ikan-belanak': {
@@ -966,7 +966,7 @@
       description: 'Ikan belanak segar langsung dari laut, ditangkap pagi ini dengan metode ramah lingkungan.',
       seller: 'Budi Fisherman',
       rating: 5,
-      stock: 15, // dalam kg (diubah dari string ke number untuk perhitungan)
+      stock: 15,
       benefits: ['Kaya omega-3', 'Protein tinggi', 'Segar langsung dari laut'],
       reviews: [
         { user: 'Andi', rating: 5, comment: 'Sangat segar!' },
@@ -1068,45 +1068,34 @@
     renderProductCategories();
   }
 
-  // RENDER KATEGORI PRODUK UNTUK FILTER
   function renderFilterCategories() {
-      const categoriesContainer = document.getElementById('filterCategories');
-      if (!categoriesContainer) return;
-      const allProducts = JSON.parse(localStorage.getItem('products')) || {};
-      const categories = [...new Set(Object.values(allProducts).map(p => p.category).filter(Boolean))];
-      categoriesContainer.innerHTML = '';
-      categories.forEach(category => {
-        const div = document.createElement('div');
-        div.className = 'category-item';
-        div.innerHTML = `
-          <input type="checkbox" id="cat-${category}" name="filter" value="${category}" class="filter-checkbox">
-          <label for="cat-${category}">${capitalizeFirstLetter(category)}</label>`;
-        categoriesContainer.appendChild(div);
-      });
-    }
+    const categoriesContainer = document.getElementById('filterCategories');
+    if (!categoriesContainer) return;
+    const allProducts = JSON.parse(localStorage.getItem('products')) || {};
+    const categories = [...new Set(Object.values(allProducts).map(p => p.category).filter(Boolean))];
+    categoriesContainer.innerHTML = '';
+    categories.forEach(category => {
+      const div = document.createElement('div');
+      div.className = 'category-item';
+      div.innerHTML = `
+        <input type="checkbox" id="cat-${category}" name="filter" value="${category}" class="filter-checkbox">
+        <label for="cat-${category}">${capitalizeFirstLetter(category)}</label>`;
+      categoriesContainer.appendChild(div);
+    });
+  }
 
   function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
-  // TOGGLE MODAL
   function toggleModal(id) {
     const modal = document.getElementById(id);
-      modal.classList.toggle('active');
-    if (action === 'open') {
-      modal.classList.add('active');
-    } else if (action === 'close') {
-      modal.classList.remove('active');
-    } else {
-      modal.classList.toggle('active');
-    }
-    
+    modal.classList.toggle('active');
     if (id === 'searchModal') {
       document.getElementById('searchInput').focus();
     }
   }
 
-  // LIHAT DETAIL PRODUK
   function viewDetail(productId) {
     const product = products[productId];
     if (product) {
@@ -1117,83 +1106,59 @@
     }
   }
 
-  // BELI SEKARANG
-function buyNow(productId) {
-  const product = products[productId];
-  if (!product) return;
-  
-  const checkoutData = {
-    id: product.id,
-    name: product.name,
-    price: product.price,
-    image: product.image,
-    seller: product.seller,
-    description: product.description,
-    stock: product.stock
-  };
-  
-  localStorage.setItem('productToCheckout', JSON.stringify(checkoutData));
-  window.location.href = 'checkout.html';
-}
-    
-    // Siapkan data untuk checkout
-    const checkoutData = {
-        items: [{
-            id: product.id,
-            name: product.name,
-            price: product.price,
-            image: product.image,
-            seller: product.seller,
-            quantity: 1,
-            stock: product.stock
-        }],
-        total: product.price,
-        date: new Date().toISOString()
-    };
-    
-    // Simpan ke localStorage
-    localStorage.setItem('checkoutData', JSON.stringify(checkoutData));
-    
-    // Redirect ke halaman checkout
-    window.location.href = 'checkout.html';
+  // ====== BELI SEKARANG SESUAI PERMINTAAN ======
+  // Menambah ke cart TANPA mengosongkan isi sebelumnya, lalu langsung redirect ke checkout
+  function buyNow(productId, price, image, seller) {
+    // Ambil data produk lengkap dari localStorage agar id, name, dsb konsisten
+    const allProducts = JSON.parse(localStorage.getItem('products')) || {};
+    const product = allProducts[productId];
+    if (!product) return;
 
-  // UPDATE COUNTER KERANJANG
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    // Cari produk dengan id yang sama
+    let found = cart.find(item => item.id === productId || item.name === product.name);
+    if (found) {
+      found.quantity += 1;
+    } else {
+      cart.push({
+        id: productId,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        quantity: 1,
+        seller: product.seller || seller || ""
+      });
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+    window.location.href = 'checkout.html';
+  }
+  // ====== END BELI SEKARANG ======
+
   function updateCartCounter() {
     const cart = JSON.parse(localStorage.getItem('cart')) || [];
     const counter = document.querySelector('.cart-counter');
-    
     if (!counter) return;
-    
     const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
     counter.textContent = totalItems;
     counter.style.display = totalItems > 0 ? 'flex' : 'none';
   }
 
-  // FITUR PENCARIAN
   function searchProducts() {
     const input = document.getElementById('searchInput').value.toLowerCase().trim();
     const modal = document.getElementById('searchModal');
-
     if (input.length < 2) return;
-
-    // cari elemen//
-    const cards =document.querySelectorAll('.card');
+    const cards = document.querySelectorAll('.card');
     let found = false;
-
     cards.forEach(card=>{
       const productName= card.querySelector('h3')?.textContent.toLowerCase();
       if (productName && productName.includes(input)){
         found = true;
-
-        //scroll ke card//
-       card.scrollIntoView({behavior: 'smooth', block: 'center'});
-       // efek
-       card.classList.add('highlighted');
-       setTimeout(() => {
-       card.classList.remove('highlighted');
-       },2000);
-       // tutup modal
-       toggleModal('searchModal', 'close');
+        card.scrollIntoView({behavior: 'smooth', block: 'center'});
+        card.classList.add('highlighted');
+        setTimeout(() => {
+          card.classList.remove('highlighted');
+        },2000);
+        toggleModal('searchModal', 'close');
       }
     });
     if(!found){
@@ -1201,84 +1166,49 @@ function buyNow(productId) {
     }
   }
 
-  // FILTER PRODUK BERDASARKAN KATEGORI
   function filterProducts() {
-  const checked = Array.from(document.querySelectorAll('input[name="filter"]:checked')).map(cb => cb.value);
-  const allCards = document.querySelectorAll('.card');
+    const checked = Array.from(document.querySelectorAll('input[name="filter"]:checked')).map(cb => cb.value);
+    const allCards = document.querySelectorAll('.card');
+    allCards.forEach(card=>{
+      const category = card.dataset.category?.trim();
+      if (checked.length===0 || checked.includes(category)) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
 
-  allCards.forEach(card=>{
-    const category = card.dataset.category?.trim();
-
-    if (checked.length===0 || checked.includes(category)) {
-      card.style.display = 'block';
-    } else {
-      card.style.display = 'none';
-    }
+  document.addEventListener('DOMContentLoaded', ()=>{
+    initApp();
+    renderFilterCategories();
+    renderRekomendasiMenu();
+    filterProducts();
+    // Perbaiki Event Listener FILTER (pasti aktif)
+    document.querySelectorAll('#filterCategories input[type="checkbox"]').forEach(cb => {
+      cb.addEventListener('change', filterProducts);
+    });
   });
-}
-//fmuat 
-document.addEventListener('DOMContentLoaded', ()=>{
-   initApp();
-  renderFilterCategories();
-  renderRekomendasiMenu();
-  filterProducts();
-})
-// Event listener filter pada modal
-  document.querySelectorAll('input[name="filter"]').forEach(cb => {
-  cb.addEventListener('change', filterProducts);
-});
-  // Pencarian produk
+
   document.getElementById('searchInput')?.addEventListener('keypress', function(e) {
     if (e.key === 'Enter') searchProducts();
   });
-  // Klik di luar modal untuk menutup
+
   document.querySelectorAll('.modal').forEach(modal => {
     modal.addEventListener('click', function(e) {
       if (e.target === this) toggleModal(this.id, 'close');
     });
   });
 
-  // aktifkan filter ketika ada yang diklik
-  document.querySelector('#modal-filter').addEventListener('change', (e) => {
-    if (e.target.classList.contains('filter-checkbox')) {
-      filterProducts();
-    }
-  });
-  // pencarian
-  document.getElementById('searchInput')?.addEventListener('keypress', function(e) {
-    if (e.key === 'Enter') searchProducts();
-  });
-
-  // klik di luar modal
-  document.querySelectorAll('.modal').forEach(modal => {
-    modal.addEventListener('click', function(e) {
-      if (e.target === this) toggleModal(this.id, 'close');
-    });
-  });
-
-
-  // aktifkan filter ketika ada yang diklik
-  document.querySelector('#modal-filter').addEventListener('change', (e) => {
-    if (e.target.classList.contains('filter-checkbox')) {
-      filterProducts();
-    }
-  });
-
-
-
-  // SORTIR PRODUK
   function sortProducts(sortBy) {
     const productContainer = document.getElementById('productContainer');
     if (!productContainer) return;
-    
     const productCards = Array.from(document.querySelectorAll('.product-card'));
-    
     productCards.sort((a, b) => {
       const priceA = parseInt(a.dataset.price);
       const priceB = parseInt(b.dataset.price);
       const ratingA = parseInt(a.dataset.rating);
       const ratingB = parseInt(b.dataset.rating);
-      
       switch(sortBy) {
         case 'price-asc':
           return priceA - priceB;
@@ -1292,45 +1222,73 @@ document.addEventListener('DOMContentLoaded', ()=>{
           return 0;
       }
     });
-    
     productCards.forEach(card => productContainer.appendChild(card));
   }
 
-  // FORMAT HARGA
   function formatPrice(price) {
     return new Intl.NumberFormat('id-ID').format(price);
   }
 
-  // TAMPILKAN ALERT
   function showAlert(type, message) {
     const alertBox = document.createElement('div');
     alertBox.className = `alert ${type}`;
     alertBox.textContent = message;
-    
     document.body.appendChild(alertBox);
-    
     setTimeout(() => {
       alertBox.classList.add('fade-out');
       setTimeout(() => alertBox.remove(), 500);
     }, 3000);
   }
 
-  // EVENT LISTENERS
-  document.addEventListener('DOMContentLoaded', function() {
-    initApp();
-    
-    // Pencarian saat menekan Enter
-    document.getElementById('searchInput')?.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') searchProducts();
+  function renderRekomendasiMenu() {
+    const container = document.querySelector("#rekomendasi .cards");
+    if (!container) return;
+    const allProducts = JSON.parse(localStorage.getItem('products')) || {};
+    container.innerHTML = '';
+    Object.values(allProducts).forEach(product => {
+      const card = document.createElement('div');
+      card.className = 'card recipe-card';
+      card.dataset.category = product.category;
+      card.innerHTML = `
+        <div class="image-container">
+          <img src="${product.image}" alt="${product.name}" class="product-image">
+          <span class="badge">${product.stock > 10 ? 'Baru ditangkap' : 'Disimpan dalam es'}</span>
+        </div>
+        <div class="product-info">
+          <h3>${product.name}</h3>
+          <p class="price">Rp. ${product.price.toLocaleString('id-ID')}/kg</p>
+        </div>
+        <div class="actions">
+          <div class="action-row">
+            <button class="detail-btn" onclick="buyNow('${product.id}', ${product.price}, '${product.image}', '${product.seller}')">
+              <i class="fas fa-shopping-bag"></i> Beli Sekarang
+            </button>
+            <button class="cart-btn" onclick="addToCart('${product.name}', ${product.price}, '${product.image}')">
+              <i class="fas fa-shopping-cart"></i>
+            </button>
+          </div>
+          <button class="recipe-btn" onclick="window.open('https://cookpad.com/id/cari/${encodeURIComponent(product.name)}','_blank')">
+            <i class="fas fa-book-open"></i> Lihat Resep
+          </button>
+        </div>
+      `;
+      container.appendChild(card);
     });
-    
-    // Klik di luar modal untuk menutup
-    document.querySelectorAll('.modal').forEach(modal => {
-      modal.addEventListener('click', function(e) {
-        if (e.target === this) toggleModal(this.id, 'close');
-      });
-    });
-  });
+  }
+
+  // Perbaiki fungsi addToCart agar update localStorage dan counter dengan benar
+  function addToCart(name, price, image) {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const existing = cart.find(item => item.name === name);
+    if (existing) {
+      existing.quantity += 1;
+    } else {
+      cart.push({ name, price, image, quantity: 1 });
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCounter();
+    alert(name + " ditambahkan ke keranjang!");
+  }
 
   // EKSPOR FUNGSI UNTUK DIGUNAKAN DI FILE LAIN
   if (typeof window !== 'undefined') {
@@ -1344,45 +1302,6 @@ document.addEventListener('DOMContentLoaded', ()=>{
       showAlert
     };
   }
-  function renderRekomendasiMenu() {
-  const container = document.querySelector("#rekomendasi .cards");
-  if (!container) return;
-
-  const allProducts = JSON.parse(localStorage.getItem('products')) || {};
-  container.innerHTML = ''; // kosongkan dulu
-
-  Object.values(allProducts).forEach(product => {
-    const card = document.createElement('div');
-    card.className = 'card recipe-card';
-    card.dataset.category = product.category;
-
-    card.innerHTML = `
-      <div class="image-container">
-        <img src="${product.image}" alt="${product.name}" class="product-image">
-        <span class="badge">${product.stock > 10 ? 'Baru ditangkap' : 'Disimpan dalam es'}</span>
-      </div>
-      <div class="product-info">
-        <h3>${product.name}</h3>
-        <p class="price">Rp. ${product.price.toLocaleString('id-ID')}/kg</p>
-      </div>
-      <div class="actions">
-        <div class="action-row">
-          <button class="detail-btn" onclick="buyNow('${product.id}', ${product.price}, '${product.image}', '${product.seller}')">
-            <i class="fas fa-shopping-bag"></i> Beli Sekarang
-          </button>
-          <button class="cart-btn" onclick="addToCart('${product.name}', ${product.price}, '${product.image}')">
-            <i class="fas fa-shopping-cart"></i>
-          </button>
-        </div>
-        <button class="recipe-btn" onclick="window.open('https://cookpad.com/id/cari/${encodeURIComponent(product.name)}','_blank')">
-          <i class="fas fa-book-open"></i> Lihat Resep
-        </button>
-      </div>
-    `;
-
-    container.appendChild(card);
-  });
-}
 </script>
 
 <script>

@@ -50,6 +50,11 @@
     .back-btn:hover {
       background-color: #005fa3;
     }
+    .produk-group {
+      border-bottom: 1px solid #eee;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+    }
   </style>
 </head>
 <body>
@@ -67,17 +72,24 @@
     document.addEventListener("DOMContentLoaded", function () {
       const pesanan = JSON.parse(localStorage.getItem("currentOrder"));
 
-      if (pesanan && pesanan.produk) {
-        const produk = pesanan.produk;
+      if (pesanan && Array.isArray(pesanan.produk)) {
+        const produkList = pesanan.produk;
         const pengiriman = pesanan.pengiriman;
         const metode = pesanan.pembayaran;
 
-        const hargaTotal = produk.price * produk.quantity;
+        let produkHtml = '';
+        produkList.forEach((produk, i) => {
+          produkHtml += `
+            <div class="produk-group">
+              <div class="item-row"><span>Produk</span><span>${produk.name}</span></div>
+              <div class="item-row"><span>Jumlah</span><span>${produk.quantity} Kg</span></div>
+              <div class="item-row"><span>Harga per Kg</span><span>Rp. ${produk.price.toLocaleString('id-ID')}</span></div>
+            </div>
+          `;
+        });
 
         document.getElementById("pesanan-container").innerHTML = `
-          <div class="item-row"><span>Produk</span><span>${produk.name}</span></div>
-          <div class="item-row"><span>Jumlah</span><span>${produk.quantity} Kg</span></div>
-          <div class="item-row"><span>Harga per Kg</span><span>Rp. ${produk.price.toLocaleString('id-ID')}</span></div>
+          ${produkHtml}
           <div class="item-row"><span>Kurir</span><span>${pengiriman.kurir}</span></div>
           <div class="item-row"><span>Ongkos Kirim</span><span>Rp. ${pengiriman.ongkos.toLocaleString('id-ID')}</span></div>
           <div class="item-row"><span>Metode Pembayaran</span><span>${metode}</span></div>

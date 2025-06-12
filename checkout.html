@@ -6,179 +6,38 @@
   <title>Checkout</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      margin: 0;
-      background-color: #e9f3f9;
-      color: #1a1a1a;
-    }
-    .container {
-      max-width: 800px; /* Diperlebar sedikit */
-      margin: auto;
-      padding: 20px;
-    }
-    .user-info, .seller-info {
-      display: flex;
-      align-items: center;
-      margin-bottom: 15px;
-    }
-    .user-info img, .seller-info img {
-      border-radius: 50%;
-      width: 50px;
-      height: 50px;
-      margin-right: 10px;
-    }
-    .card {
-      background-color: white;
-      border-radius: 12px;
-      padding: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    }
-    .product-container {
-      display: flex;
-      gap: 20px;
-      align-items: flex-start;
-    }
-    .product-image-container {
-      flex: 1;
-      min-width: 150px;
-    }
-    .product-info-container {
-      flex: 2;
-    }
-    .product-img {
-      width: 100%;
-      max-height: 200px;
-      object-fit: contain;
-      border-radius: 10px;
-    }
-    .qty-box {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-top: 15px;
-    }
-    .qty-box button {
-      padding: 5px 15px;
-      font-size: 16px;
-      background-color: #0077cc;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    .qty-box button:hover {
-      background-color: #005fa3;
-    }
-    .shipping-options {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 20px;
-      justify-content: space-between;
-    }
-    .shipping-option {
-      background: #f0f4f8;
-      padding: 10px;
-      border-radius: 10px;
-      text-align: center;
-      flex: 1;
-      cursor: pointer;
-      border: 2px solid transparent;
-      transition: all 0.3s;
-    }
-    .shipping-option:hover {
-      background: #e0e8f0;
-    }
-    .shipping-option.active {
-      border-color: #0077cc;
-      background-color: #d0ecff;
-    }
-    .note {
-      background-color: #dceff8;
-      padding: 15px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      font-size: 14px;
-    }
-    .price-summary {
-      margin-bottom: 20px;
-      background: #f8fafc;
-      padding: 15px;
-      border-radius: 10px;
-    }
-    .price-summary div {
-      display: flex;
-      justify-content: space-between;
-      margin: 8px 0;
-    }
-    .checkout-btn {
-      background-color: #0077cc;
-      color: white;
-      padding: 15px;
-      border: none;
-      width: 100%;
-      font-size: 16px;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      font-weight: bold;
-    }
-    .checkout-btn:hover {
-      background-color: #005fa3;
-    }
-    select {
-      width: 100%;
-      padding: 12px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      border: 1px solid #ccc;
-      background-color: white;
-    }
-    .alert {
-      position: fixed;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      padding: 12px 24px;
-      border-radius: 8px;
-      color: white;
-      z-index: 1000;
-      opacity: 1;
-      transition: opacity 0.5s;
-      font-weight: 500;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
-    .alert.error {
-      background-color: #ff4444;
-    }
-    .alert.success {
-      background-color: #00C851;
-    }
-    .alert.fade-out {
-      opacity: 0;
-    }
-    
+    body { font-family: 'Inter', sans-serif; margin: 0; background-color: #e9f3f9; color: #1a1a1a;}
+    .container { max-width: 800px; margin: auto; padding: 20px;}
+    .user-info, .seller-info { display: flex; align-items: center; margin-bottom: 15px;}
+    .user-info img, .seller-info img { border-radius: 50%; width: 50px; height: 50px; margin-right: 10px;}
+    .card { background-color: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);}
+    .product-container { display: flex; gap: 20px; align-items: flex-start;}
+    .product-image-container { flex: 1; min-width: 150px;}
+    .product-info-container { flex: 2;}
+    .product-img { width: 100%; max-height: 200px; object-fit: contain; border-radius: 10px;}
+    .qty-box { display: flex; align-items: center; gap: 10px; margin-top: 15px;}
+    .qty-box button { padding: 5px 15px; font-size: 16px; background-color: #0077cc; color: white; border: none; border-radius: 5px; cursor: pointer;}
+    .qty-box button:hover { background-color: #005fa3;}
+    .shipping-options { display: flex; gap: 10px; margin-bottom: 20px; justify-content: space-between;}
+    .shipping-option { background: #f0f4f8; padding: 10px; border-radius: 10px; text-align: center; flex: 1; cursor: pointer; border: 2px solid transparent; transition: all 0.3s;}
+    .shipping-option:hover { background: #e0e8f0;}
+    .shipping-option.active { border-color: #0077cc; background-color: #d0ecff;}
+    .note { background-color: #dceff8; padding: 15px; border-radius: 8px; margin-bottom: 20px; font-size: 14px;}
+    .price-summary { margin-bottom: 20px; background: #f8fafc; padding: 15px; border-radius: 10px;}
+    .price-summary div { display: flex; justify-content: space-between; margin: 8px 0;}
+    .checkout-btn { background-color: #0077cc; color: white; padding: 15px; border: none; width: 100%; font-size: 16px; border-radius: 12px; cursor: pointer; transition: background-color 0.3s; font-weight: bold;}
+    .checkout-btn:hover { background-color: #005fa3;}
+    select { width: 100%; padding: 12px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #ccc; background-color: white;}
+    .alert { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); padding: 12px 24px; border-radius: 8px; color: white; z-index: 1000; opacity: 1; transition: opacity 0.5s; font-weight: 500; box-shadow: 0 4px 12px rgba(0,0,0,0.15);}
+    .alert.error { background-color: #ff4444;}
+    .alert.success { background-color: #00C851;}
+    .alert.fade-out { opacity: 0;}
     @media (max-width: 600px) {
-      .product-container {
-        flex-direction: column;
-      }
-      .product-image-container {
-        width: 100%;
-        text-align: center;
-      }
-      .product-img {
-       width: 100%;
-       max-height: 200px;
-       object-fit: contain;
-       border-radius: 10px;
-       background-color: #f5f5f5; /* latar belakang jika gambar transparan */
-       padding: 10px;
-}
-      }
-      .shipping-options {
-        flex-direction: right;
-      }
+      .product-container { flex-direction: column; }
+      .product-image-container { width: 100%; text-align: center;}
+      .product-img { width: 100%; max-height: 200px; object-fit: contain; border-radius: 10px; background-color: #f5f5f5; padding: 10px;}
+      .shipping-options { flex-direction: column;}
+    }
   </style>
 </head>
 <body>
@@ -196,31 +55,15 @@
       <div><strong id="seller-name">Budi fisherman</strong></div>
     </div>
 
-    <div class="card">
-      <div class="product-container">
-        <div class="product-image-container">
-          <img id="product-image" src="" class="product-img" alt="Produk">
-        </div>
-        <div class="product-info-container">
-          <h3 id="product-name">Nama Produk</h3>
-          <p id="product-description">Deskripsi produk akan muncul di sini...</p>
-          <strong>Rp. <span id="harga-produk">0</span></strong>
-          <div class="qty-box">
-            <button onclick="ubahJumlah(-1)">-</button>
-            <span id="jumlah">1</span> Kg
-            <button onclick="ubahJumlah(1)">+</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div id="produk-container"></div>
 
     <div class="note">Catatan: Tambahkan ice pack dan bungkus yang tebal</div>
 
     <h4>Opsi pengiriman</h4>
     <div class="shipping-options">
-      <div class="shipping-option" onclick="pilihKurir('Hemat', 5000)">Hemat<br><small>Rp. 5.000</small></div>
-      <div class="shipping-option" onclick="pilihKurir('Standar', 10000)">Standar<br><small>Rp. 10.000</small></div>
-      <div class="shipping-option active" onclick="pilihKurir('Express', 35000)">Express<br><small>Rp. 35.000</small></div>
+      <div class="shipping-option" onclick="pilihKurir('Hemat', 5000, event)">Hemat<br><small>Rp. 5.000</small></div>
+      <div class="shipping-option" onclick="pilihKurir('Standar', 10000, event)">Standar<br><small>Rp. 10.000</small></div>
+      <div class="shipping-option active" onclick="pilihKurir('Express', 35000, event)">Express<br><small>Rp. 35.000</small></div>
     </div>
 
     <label for="pembayaran"><strong>Metode Pembayaran:</strong></label>
@@ -242,212 +85,245 @@
   </div>
 
   <script>
-    // Data produk
-    const products = {
-    'ikan belanak': {
-      id: 'ikan belanak',
-      name: 'Ikan Belanak',
-      price: 40000,
-      image: 'img/ikan-belanak.png',
-      description: 'Ikan belanak segar langsung dari laut, ditangkap pagi ini dengan metode ramah lingkungan.',
-      seller: 'Budi Fisherman',
-      rating: 5,
-      stock: '15 kg',
-      benefits: ['Kaya omega-3', 'Protein tinggi', 'Segar langsung dari laut']
-    },
-    'ikan puri': {
-      id: 'ikan puri',
-      name: 'Ikan Puri',
-      price: 25000,
-      image: 'img/ikan-puri.png',
-      description: 'Ikan puri segar dengan daging yang lembut dan gurih.',
-      seller: 'Budi Fisherman',
-      rating: 4,
-      stock: '9 kg',
-      benefits: ['Rendah lemak', 'Kaya protein', 'Cocok untuk berbagai masakan']
-    },
-    'udang': {
-      id: 'udang',
-      name: 'Udang',
-      price: 28000,
-      image: 'img/udang.png',
-      description: 'Udang segar ukuran besar dengan cita rasa manis alami.',
-      seller: 'Susi Seafood',
-      rating: 5,
-      stock: '7 kg',
-      benefits: ['Segar langsung dari tambak', 'Ukuran besar', 'Bersih']
-    },
-    'kepiting': {
-      id: 'kepiting',
-      name: 'Kepiting',
-      price: 40000,
-      image: 'img/kepiting.png',
-      description: 'Kepiting segar dengan daging yang padat dan lezat.',
-      seller: 'Joko Nelayan',
-      rating: 4,
-      stock: '15 kg',
-      benefits: ['Daging padat', 'Segar', 'Kaya nutrisi']
-    },
-    'ikan tongkol': {
-      id: 'ikan tongkol',
-      name: 'Ikan Tongkol',
-      price: 37000,
-      image: 'img/ikan-tongkol.png',
-      description: 'Ikan tongkol segar dengan tekstur daging yang kenyal.',
-      seller: 'Budi Fisherman',
-      rating: 4,
-      stock: '12 kg',
-      benefits: ['Kaya protein', 'Tekstur kenyal', 'Cocok untuk berbagai masakan']
-    },
-    'sotong': {
-      id: 'sotong',
-      name: 'Sotong',
-      price: 64000,
-      image: 'img/sotong.png',
-      description: 'Sotong segar dengan cita rasa khas yang lezat.',
-      seller: 'Joko Nelayan',
-      rating: 5,
-      stock: '8 kg',
-      benefits: ['Segar', 'Tekstur lembut', 'Kaya protein']
-    },
-    'ikan kakap': {
-      id: 'ikan kakap',
-      name: 'Ikan Kakap',
-      price: 72000,
-      image: 'img/ikan-kakap.png',
-      description: 'Ikan kakap merah segar dengan daging tebal dan lembut.',
-      seller: 'Susi Seafood',
-      rating: 5,
-      stock: '11 kg',
-      benefits: ['Daging tebal', 'Kualitas premium', 'Segar']
+    // Fungsi tambah ke keranjang (bisa dipanggil dari halaman lain)
+    // Gunakan: tambahKeKeranjang(id, name, image, price, qty)
+    function tambahKeKeranjang(produkId, nama, gambar, harga, jumlah = 1) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let found = cart.find(item => item.id === produkId);
+      jumlah = parseInt(jumlah) || 1;
+      if (found) {
+        found.quantity += jumlah;
+      } else {
+        cart.push({
+          id: produkId,
+          name: nama,
+          image: gambar,
+          price: harga,
+          quantity: jumlah
+        });
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert('Produk ditambahkan ke keranjang!');
     }
 
+    // Daftar produk referensi
+    const products = {
+      'ikan belanak': {
+        id: 'ikan belanak',
+        name: 'Ikan Belanak',
+        price: 40000,
+        image: 'img/ikan-belanak.png',
+        description: 'Ikan belanak segar langsung dari laut, ditangkap pagi ini dengan metode ramah lingkungan.',
+        seller: 'Budi Fisherman',
+        rating: 5,
+        stock: '15'
+      },
+      'ikan puri': {
+        id: 'ikan puri',
+        name: 'Ikan Puri',
+        price: 25000,
+        image: 'img/ikan-puri.png',
+        description: 'Ikan puri segar dengan daging yang lembut dan gurih.',
+        seller: 'Budi Fisherman',
+        rating: 4,
+        stock: '9'
+      },
+      'udang': {
+        id: 'udang',
+        name: 'Udang',
+        price: 28000,
+        image: 'img/udang.png',
+        description: 'Udang segar ukuran besar dengan cita rasa manis alami.',
+        seller: 'Susi Seafood',
+        rating: 5,
+        stock: '7'
+      },
+      'kepiting': {
+        id: 'kepiting',
+        name: 'Kepiting',
+        price: 40000,
+        image: 'img/kepiting.png',
+        description: 'Kepiting segar dengan daging yang padat dan lezat.',
+        seller: 'Joko Nelayan',
+        rating: 4,
+        stock: '15'
+      },
+      'ikan tongkol': {
+        id: 'ikan tongkol',
+        name: 'Ikan Tongkol',
+        price: 37000,
+        image: 'img/ikan-tongkol.png',
+        description: 'Ikan tongkol segar dengan tekstur daging yang kenyal.',
+        seller: 'Budi Fisherman',
+        rating: 4,
+        stock: '12'
+      },
+      'sotong': {
+        id: 'sotong',
+        name: 'Sotong',
+        price: 64000,
+        image: 'img/sotong.png',
+        description: 'Sotong segar dengan cita rasa khas yang lezat.',
+        seller: 'Joko Nelayan',
+        rating: 5,
+        stock: '8'
+      },
+      'ikan kakap': {
+        id: 'ikan kakap',
+        name: 'Ikan Kakap',
+        price: 72000,
+        image: 'img/ikan-kakap.png',
+        description: 'Ikan kakap merah segar dengan daging tebal dan lembut.',
+        seller: 'Susi Seafood',
+        rating: 5,
+        stock: '11'
+      }
     };
 
     // Variabel global
-    let hargaPerKg = 0;
-    let jumlah = 1;
+    let cartItems = [];
     let ongkir = 35000;
     let namaKurir = "Express";
-    let currentProduct = null;
 
-    // Fungsi untuk menampilkan alert
     function showAlert(type, message) {
       const alertBox = document.createElement('div');
       alertBox.className = `alert ${type}`;
       alertBox.textContent = message;
       document.body.appendChild(alertBox);
-      
       setTimeout(() => {
         alertBox.classList.add('fade-out');
         setTimeout(() => alertBox.remove(), 500);
       }, 3000);
     }
-    function loadProductImage() {
-  const imgElement = document.getElementById('product image');
-  imgElement.src = currentProduct.image;
-  imgElement.onerror = function() {
-    this.src = 'img/default product.png'; // gambar fallback
-    console.error('Gagal memuat gambar:', currentProduct.image);
-  };
-}
-    // Fungsi untuk memuat data produk
-    function loadProduct() {
-      // Coba ambil dari localStorage
-      const productData = JSON.parse(localStorage.getItem('productToCheckout'));
-      
-      if (productData) {
-        currentProduct = productData;
-      } else {
-        // Jika tidak ada di localStorage, coba dari parameter URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const productId = urlParams.get('id');
-        
-        if (productId && products[productId]) {
-          currentProduct = products[productId];
-        } else {
-          currentProduct = products['ikan-belanak'];
-          showAlert('error', 'Produk tidak ditemukan, menampilkan produk default');
-        }
-      }
 
-      // Update tampilan dengan data produk
-      if (currentProduct) {
-        document.getElementById('product-name').textContent = currentProduct.name;
-        document.getElementById('product-description').textContent = currentProduct.description;
-        document.getElementById('product-image').src = currentProduct.image;
-        document.getElementById('product-image').alt = currentProduct.name;
-        document.getElementById('seller-name').textContent = currentProduct.seller;
-        document.getElementById('harga-produk').textContent = currentProduct.price.toLocaleString('id-ID');
-        
-        hargaPerKg = currentProduct.price;
-        updateHarga();
+    function loadCart() {
+      let data = [];
+      try {
+        data = JSON.parse(localStorage.getItem('cart')) || [];
+      } catch { data = []; }
+      if (!Array.isArray(data) || data.length === 0) {
+        document.getElementById("produk-container").innerHTML = "<div style='text-align:center;color:#888'>Keranjang kosong</div>";
+        return;
       }
+      cartItems = data;
+      renderCartProducts();
     }
 
-    // Fungsi mengubah jumlah produk
-    function ubahJumlah(change) {
-      const newJumlah = jumlah + change;
-      
-      if (newJumlah < 1) {
-        showAlert('error', 'Jumlah minimal 1 kg');
-        return;
-      }
-      
-      if (currentProduct.id && products[currentProduct.id] && newJumlah > products[currentProduct.id].stock) {
-        showAlert('error', `Stok tidak mencukupi. Stok tersedia: ${products[currentProduct.id].stock} kg`);
-        return;
-      }
-      
-      jumlah = newJumlah;
-      document.getElementById("jumlah").textContent = jumlah;
+    function renderCartProducts() {
+      const container = document.getElementById("produk-container");
+      container.innerHTML = "";
+      let sellerSet = new Set();
+
+      cartItems.forEach((item, index) => {
+        // Ambil data produk jika tersedia, jika tidak gunakan data dari cart
+        const product = products[item.id] || item;
+        sellerSet.add(product.seller || "-");
+
+        const jumlah = item.quantity;
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="product-container">
+            <div class="product-image-container">
+              <img src="${product.image}" class="product-img" onerror="this.src='img/default product.png'" alt="${product.name}">
+            </div>
+            <div class="product-info-container">
+              <h3>${product.name}</h3>
+              <p>${product.description || ""}</p>
+              <strong>Rp. ${product.price.toLocaleString('id-ID')}</strong>
+              <div class="qty-box">
+                <button onclick="ubahJumlah(${index}, -1)">-</button>
+                <span id="jumlah-${index}">${jumlah}</span> Kg
+                <button onclick="ubahJumlah(${index}, 1)">+</button>
+                <button onclick="hapusItem(${index})" title="Hapus" style="margin-left:16px;background:#ff4444;color:white;border:none;border-radius:5px;padding:5px 10px;cursor:pointer;">Hapus</button>
+              </div>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      let sellerName = sellerSet.size === 1 ? Array.from(sellerSet)[0] : 'Multi Seller';
+      document.getElementById('seller-name').textContent = sellerName;
+
       updateHarga();
     }
 
-    // Fungsi memilih kurir pengiriman
-    function pilihKurir(nama, harga) {
+    function ubahJumlah(index, change) {
+      const item = cartItems[index];
+      const product = products[item.id] || item;
+      const newQty = item.quantity + change;
+
+      if (newQty < 1) {
+        showAlert('error', 'Minimal 1 kg');
+        return;
+      }
+
+      if (product.stock && newQty > parseInt(product.stock)) {
+        showAlert('error', `Stok hanya tersedia ${product.stock} kg`);
+        return;
+      }
+
+      item.quantity = newQty;
+      document.getElementById(`jumlah-${index}`).textContent = newQty;
+
+      localStorage.setItem('cart', JSON.stringify(cartItems));
+      updateHarga();
+    }
+
+    function hapusItem(index) {
+      cartItems.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cartItems));
+      renderCartProducts();
+    }
+
+    function pilihKurir(nama, harga, event) {
       namaKurir = nama;
       ongkir = harga;
-      
+
       document.querySelectorAll(".shipping-option").forEach(el => {
         el.classList.remove("active");
       });
       event.currentTarget.classList.add("active");
-      
+
       updateHarga();
     }
 
-    // Fungsi update tampilan harga
     function updateHarga() {
-      const totalProduk = hargaPerKg * jumlah;
-      const totalHarga = totalProduk + ongkir;
-      
+      let totalProduk = 0;
+      cartItems.forEach(item => {
+        totalProduk += item.price * item.quantity;
+      });
+
+      const total = totalProduk + ongkir;
+
       document.getElementById("total-produk").textContent = `Rp. ${totalProduk.toLocaleString("id-ID")}`;
       document.getElementById("ongkir").textContent = `Rp. ${ongkir.toLocaleString("id-ID")}`;
-      document.getElementById("total-harga").textContent = `Rp. ${totalHarga.toLocaleString("id-ID")}`;
+      document.getElementById("total-harga").textContent = `Rp. ${total.toLocaleString("id-ID")}`;
     }
 
-    // Fungsi proses checkout
     function checkout() {
-      if (!currentProduct) {
-        showAlert('error', 'Produk tidak valid');
+      if (!cartItems || cartItems.length === 0) {
+        showAlert('error', 'Keranjang kosong');
         return;
       }
 
       const metodePembayaran = document.getElementById('pembayaran').value;
-      const totalProduk = hargaPerKg * jumlah;
+      let totalProduk = 0;
+      cartItems.forEach(item => {
+        totalProduk += item.price * item.quantity;
+      });
       const total = totalProduk + ongkir;
 
-      // Simpan data pesanan
       const pesanan = {
         id: Date.now(),
-        produk: {
-          id: currentProduct.id,
-          name: currentProduct.name,
-          price: hargaPerKg,
-          image: currentProduct.image,
-          quantity: jumlah
-        },
+        produk: cartItems.map(item => ({
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          image: item.image,
+          quantity: item.quantity
+        })),
         pengiriman: {
           kurir: namaKurir,
           ongkos: ongkir
@@ -459,17 +335,16 @@
       };
 
       localStorage.setItem("currentOrder", JSON.stringify(pesanan));
-      
       const orderHistory = JSON.parse(localStorage.getItem('orderHistory')) || [];
       orderHistory.push(pesanan);
       localStorage.setItem('orderHistory', JSON.stringify(orderHistory));
-      
+
+      localStorage.removeItem('cart');
       window.location.href = "pembayaran-berhasil.html";
     }
 
-    // Inisialisasi saat halaman dimuat
-    document.addEventListener('DOMContentLoaded', function() {
-      loadProduct();
+    document.addEventListener('DOMContentLoaded', function () {
+      loadCart();
     });
   </script>
 </body>
