@@ -266,7 +266,7 @@
             </div>
             <div class="product-info-container">
               <h3>${product.name}</h3>
-              <div style="font-size:13px;color:#444;margin:4px 0 10px 0;">${product.description || ""}</div>
+              <p>${product.description || ""}</p>
               <strong>Rp. ${product.price.toLocaleString('id-ID')}</strong>
               <div class="qty-box">
                 <button onclick="ubahJumlah(${index}, -1)">-</button>
