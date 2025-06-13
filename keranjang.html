@@ -93,6 +93,7 @@
               <button onclick="updateQuantity(${index}, -1)" class="bg-[#0077B6] text-white px-2 rounded">-</button>
               <span id="qyt-${index}" class="tect-sm text-[#07304A]">${item.quantity} kg</span>
               <button onclick="updateQuantity(${index}, 1)" class="bg-[#0077B6] text-white px-2 rounded">+</button>
+              <button onclick="hapusItem(${index})" title="Hapus" style="margin-left:16px;background:#ff4444;color:white;border:none;border-radius:5px;padding:5px 10px;cursor:pointer;">Hapus</button>
             </div>
             <div class="font-semibold text-[#0077B6]">Rp. ${item.price.toLocaleString("id-ID")}</div>
           </div>
@@ -128,6 +129,13 @@
       localStorage.setItem('cart', JSON.stringify(cart));
       location.reload();
     }
+
+    function hapusItem(index) {
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  cart.splice(index, 1);
+  localStorage.setItem('cart', JSON.stringify(cart));
+  location.reload();
+}
   </script>
 </body>
 </html>
