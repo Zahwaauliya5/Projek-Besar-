@@ -88,7 +88,7 @@
     // Fungsi tambah ke keranjang (bisa dipanggil dari halaman lain)
     // Gunakan: tambahKeKeranjang(id, name, image, price, qty)
     function tambahKeKeranjang(produkId, nama, gambar, harga, jumlah = 1) {
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const cartItems = JSON.parse(localStorage.getItem('cart_checkout')) || [];
       let found = cart.find(item => item.id === produkId);
       jumlah = parseInt(jumlah) || 1;
       if (found) {
@@ -102,7 +102,7 @@
           quantity: jumlah
         });
       }
-      localStorage.setItem('cart', JSON.stringify(cart));
+      localStorage.setItem('cart_checkout', JSON.stringify(cart));
       alert('Produk ditambahkan ke keranjang!');
     }
 
@@ -197,17 +197,17 @@
     }
 
     function loadCart() {
-      let data = [];
-      try {
-        data = JSON.parse(localStorage.getItem('cart')) || [];
-      } catch { data = []; }
-      if (!Array.isArray(data) || data.length === 0) {
-        document.getElementById("produk-container").innerHTML = "<div style='text-align:center;color:#888'>Keranjang kosong</div>";
-        return;
-      }
-      cartItems = data;
-      renderCartProducts();
-    }
+  let data = [];
+  try {
+    data = JSON.parse(localStorage.getItem('cart_checkout')) || [];
+  } catch { data = []; }
+  if (!Array.isArray(data) || data.length === 0) {
+    document.getElementById("produk-container").innerHTML = "<div style='text-align:center;color:#888'>Keranjang kosong</div>";
+    return;
+  }
+  cartItems = data;
+  renderCartProducts();
+}
 
     function renderCartProducts() {
       const container = document.getElementById("produk-container");

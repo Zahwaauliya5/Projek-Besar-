@@ -67,6 +67,23 @@
     // tambahKeKeranjang('ikan belanak', 'Ikan Belanak', 'img/ikan-belanak.png', 40000, 2);
 
     document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("pesanBtn").addEventListener("click", () => {
+  // Ambil semua checkbox yang dicentang
+  const checkedIndexes = Array.from(document.querySelectorAll('.item-check'))
+    .map(cb => cb.checked ? parseInt(cb.getAttribute('data-index')) : null)
+    .filter(idx => idx !== null);
+
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const selectedProducts = checkedIndexes.map(idx => cart[idx]);
+
+  if (selectedProducts.length === 0) {
+    alert("Pilih minimal satu produk untuk checkout.");
+    return;
+  }
+
+  localStorage.setItem('cart_checkout', JSON.stringify(selectedProducts));
+  window.location.href = "checkout.html";
+});
       const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
       const container = document.getElementById('cartItemsContainer');
       let total = 0;
@@ -104,20 +121,31 @@
 
       document.getElementById("totalHarga").textContent = `Total Rp${total.toLocaleString("id-ID")}`;
 
-      // Tombol pesan
-      document.getElementById("pesanBtn").addEventListener("click", () => {
-        if (cartItems.length > 0) {
-          alert("Pesanan berhasil dibuat!");
-          // Jangan hapus cart! Checkout akan menghapusnya setelah transaksi sukses
-          window.location.href = "checkout.html";
-        } else {
-          alert("Keranjang kosong.");
-        }
-      });
+     // Tombol pesan
+     document.getElementById("pesanBtn").addEventListener("click", () => {
+  // Ambil semua checkbox yang dicentang
+  const checkedIndexes = Array.from(document.querySelectorAll('.item-check'))
+    .map(cb => cb.checked ? parseInt(cb.getAttribute('data-index')) : null)
+    .filter(idx => idx !== null);
+
+  // Ambil data produk tercentang
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const selectedProducts = checkedIndexes.map(idx => cart[idx]);
+
+  if (selectedProducts.length === 0) {
+    alert("Pilih minimal satu produk untuk checkout.");
+    return;
+  }
+
+  // Simpan produk terpilih ke localStorage khusus checkout
+  localStorage.setItem('cart_checkout', JSON.stringify(selectedProducts));
+
+  window.location.href = "checkout.html";
+});
     });
 
     function updateQuantity(index, change){
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let cart = JSON.parse(localStorage.getItem('cart_checkout')) || [];
       if (!cart[index]) return;
 
       cart[index].quantity += change;
@@ -126,7 +154,7 @@
         cart.splice(index, 1);
       }
 
-      localStorage.setItem('cart', JSON.stringify(cart));
+      localStorage.setItem('cart_checkout', JSON.stringify(cart));
       location.reload();
     }
 
