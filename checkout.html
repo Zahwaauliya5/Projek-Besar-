@@ -32,53 +32,16 @@
     .alert.error { background-color: #ff4444;}
     .alert.success { background-color: #00C851;}
     .alert.fade-out { opacity: 0;}
-    /* Arrow back button styles */
-    .arrow-back-btn {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: none;
-      border: none;
-      color: #0077cc;
-      font-size: 16px;
-      font-family: inherit;
-      cursor: pointer;
-      margin-bottom: 18px;
-      margin-left: -6px;
-      padding: 6px 10px 6px 2px;
-      border-radius: 6px;
-      transition: background 0.2s;
-    }
-    .arrow-back-btn:hover {
-      background: #e5f2ff;
-    }
-    .arrow-back-icon {
-      width: 22px;
-      height: 22px;
-      stroke: #0077cc;
-      display: inline-block;
-    }
     @media (max-width: 600px) {
       .product-container { flex-direction: column; }
       .product-image-container { width: 100%; text-align: center;}
       .product-img { width: 100%; max-height: 200px; object-fit: contain; border-radius: 10px; background-color: #f5f5f5; padding: 10px;}
       .shipping-options { flex-direction: column;}
-      .arrow-back-btn { font-size: 15px; }
-      .arrow-back-icon { width: 19px; height: 19px; }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- Arrow Back Button Start -->
-    <button class="arrow-back-btn" onclick="window.location.href='home_final.html'">
-      <svg class="arrow-back-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/>
-      </svg>
-      Kembali ke Beranda
-    </button>
-    <!-- Arrow Back Button End -->
-
     <div class="user-info">
       <img src="img/pembeli.png" alt="Foto Pembeli">
       <div>
@@ -98,9 +61,9 @@
 
     <h4>Opsi pengiriman</h4>
     <div class="shipping-options">
-      <div class="shipping-option" onclick="pilihKurir('Hemat', 5000, event)">Hemat<br><small>Rp. 5.000</small></div>
-      <div class="shipping-option" onclick="pilihKurir('Standar', 10000, event)">Standar<br><small>Rp. 10.000</small></div>
-      <div class="shipping-option active" onclick="pilihKurir('Express', 35000, event)">Express<br><small>Rp. 35.000</small></div>
+      <div class="shipping-option" onclick="pilihKurir('Hemat', 5000, event)">Hemat<br><small>Rp. 5.000</small><br><small>2 hari</small></div>
+      <div class="shipping-option" onclick="pilihKurir('Standar', 10000, event)">Standar<br><small>Rp. 10.000</small><br><small>1 jam</small></div>
+      <div class="shipping-option active" onclick="pilihKurir('Express', 35000, event)">Express<br><small>Rp. 35.000</small><br><small>30 menit</small></div>
     </div>
 
     <label for="pembayaran"><strong>Metode Pembayaran:</strong></label>
@@ -266,7 +229,8 @@
             </div>
             <div class="product-info-container">
               <h3>${product.name}</h3>
-              <p>${product.description || ""}</p>
+              <p style="color:#555; margin-top:-10px; margin-bottom:12px;">${product.description || ""}</p>
+              <p>Hasil laut segar hasil tangkapan nelayan lokal. Cocok untuk berbagai jenis masakan khas Indonesia.</p>
               <strong>Rp. ${product.price.toLocaleString('id-ID')}</strong>
               <div class="qty-box">
                 <button onclick="ubahJumlah(${index}, -1)">-</button>
