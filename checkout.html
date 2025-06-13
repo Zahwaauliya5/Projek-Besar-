@@ -236,7 +236,6 @@
                 <button onclick="ubahJumlah(${index}, -1)">-</button>
                 <span id="jumlah-${index}">${jumlah}</span> Kg
                 <button onclick="ubahJumlah(${index}, 1)">+</button>
-                <button onclick="hapusItem(${index})" title="Hapus" style="margin-left:16px;background:#ff4444;color:white;border:none;border-radius:5px;padding:5px 10px;cursor:pointer;">Hapus</button>
               </div>
             </div>
           </div>
@@ -272,11 +271,6 @@
       updateHarga();
     }
 
-    function hapusItem(index) {
-      cartItems.splice(index, 1);
-      localStorage.setItem('cart', JSON.stringify(cartItems));
-      renderCartProducts();
-    }
 
     function pilihKurir(nama, harga, event) {
       namaKurir = nama;
