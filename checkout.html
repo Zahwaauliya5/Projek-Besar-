@@ -8,6 +8,8 @@
   <style>
     body { font-family: 'Inter', sans-serif; margin: 0; background-color: #e9f3f9; color: #1a1a1a;}
     .container { max-width: 800px; margin: auto; padding: 20px;}
+    .back-arrow { display: flex; align-items: center; margin-bottom: 18px; cursor: pointer; user-select: none;}
+    .back-arrow svg { width: 24px; height: 24px; margin-right: 8px;}
     .user-info, .seller-info { display: flex; align-items: center; margin-bottom: 15px;}
     .user-info img, .seller-info img { border-radius: 50%; width: 50px; height: 50px; margin-right: 10px;}
     .card { background-color: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);}
@@ -42,6 +44,12 @@
 </head>
 <body>
   <div class="container">
+    <!-- Arrow Back -->
+    <div class="back-arrow" onclick="window.location.href='home_final.html'">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+      <span>Kembali ke Beranda</span>
+    </div>
+
     <div class="user-info">
       <img src="img/pembeli.png" alt="Foto Pembeli">
       <div>
@@ -88,7 +96,7 @@
     // Fungsi tambah ke keranjang (bisa dipanggil dari halaman lain)
     // Gunakan: tambahKeKeranjang(id, name, image, price, qty)
     function tambahKeKeranjang(produkId, nama, gambar, harga, jumlah = 1) {
-      const cartItems = JSON.parse(localStorage.getItem('cart_checkout')) || [];
+      const cart = JSON.parse(localStorage.getItem('cart_checkout')) || [];
       let found = cart.find(item => item.id === produkId);
       jumlah = parseInt(jumlah) || 1;
       if (found) {
@@ -197,17 +205,18 @@
     }
 
     function loadCart() {
-  let data = [];
-  try {
-    data = JSON.parse(localStorage.getItem('cart_checkout')) || [];
-  } catch { data = []; }
-  if (!Array.isArray(data) || data.length === 0) {
-    document.getElementById("produk-container").innerHTML = "<div style='text-align:center;color:#888'>Keranjang kosong</div>";
-    return;
-  }
-  cartItems = data;
-  renderCartProducts();
-}
+      let data = [];
+      try {
+        data = JSON.parse(localStorage.getItem('cart_checkout')) || [];
+      } catch { data = []; }
+      if (!Array.isArray(data) || data.length === 0) {
+        document.getElementById("produk-container").innerHTML = "<div style='text-align:center;color:#888'>Keranjang kosong</div>";
+        document.getElementById('seller-name').textContent = '-';
+        return;
+      }
+      cartItems = data;
+      renderCartProducts();
+    }
 
     function renderCartProducts() {
       const container = document.getElementById("produk-container");
@@ -267,10 +276,9 @@
       item.quantity = newQty;
       document.getElementById(`jumlah-${index}`).textContent = newQty;
 
-      localStorage.setItem('cart', JSON.stringify(cartItems));
+      localStorage.setItem('cart_checkout', JSON.stringify(cartItems));
       updateHarga();
     }
-
 
     function pilihKurir(nama, harga, event) {
       namaKurir = nama;
@@ -334,7 +342,7 @@
       orderHistory.push(pesanan);
       localStorage.setItem('orderHistory', JSON.stringify(orderHistory));
 
-      localStorage.removeItem('cart');
+      localStorage.removeItem('cart_checkout');
       window.location.href = "pembayaran-berhasil.html";
     }
 
